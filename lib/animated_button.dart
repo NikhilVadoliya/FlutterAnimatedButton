@@ -8,56 +8,62 @@ class AnimatedButton extends StatefulWidget {
   final TextStyle textStyle;
   final Color selectedTextColor;
   final Color selectedBackgroundColor;
+  final Color unSelectedBackgroundColor;
   final bool isReverse;
   final int textMaxLine;
   final TextOverflow textOverflow;
-  final TextAlign textAlign;
+  final AlignmentGeometry textAlignment;
   final Duration animationDuration;
-
-  // final String number;
+  final double width;
+  final double height;
   final VoidCallback onPress;
   final TransitionType transitionType;
   final bool isStrip;
-  final StripAlign stripAlign;
   final Color stripColor;
   final double stripSize;
 
   const AnimatedButton(
       {Key key,
       @required this.text,
-      // @required this.number,
       this.onPress,
       this.transitionType = TransitionType.LEFT_TO_RIGHT,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
       this.selectedTextColor = Colors.blue,
       this.selectedBackgroundColor = Colors.white,
+      this.unSelectedBackgroundColor = Colors.white24,
       this.isReverse = false,
       this.textMaxLine,
       this.textOverflow,
-      this.textAlign,
+      this.textAlignment = Alignment.center,
+      this.height = 50,
+      this.width = double.infinity,
       this.animationDuration = const Duration(milliseconds: 500)})
-      : isStrip = false,
-        stripAlign = null,
+      : assert(text != null),
+        isStrip = false,
         stripColor = null,
         stripSize = null,
         super(key: key);
 
-  AnimatedButton.strip(Key key,
-      {this.text,
+  AnimatedButton.strip(
+      {Key key,
+      this.text,
       this.isReverse = false,
+      this.height = 50,
+      this.width = double.infinity,
       this.transitionType = TransitionType.LEFT_TO_RIGHT,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
       this.selectedTextColor = Colors.blue,
       this.selectedBackgroundColor = Colors.white,
       this.textMaxLine,
       this.textOverflow,
-      this.textAlign,
-      this.animationDuration,
+      this.textAlignment = Alignment.center,
+      this.animationDuration = const Duration(milliseconds: 500),
       this.onPress,
-      this.stripAlign = StripAlign.LEFT,
+      this.unSelectedBackgroundColor = Colors.white24,
       this.stripColor = Colors.white,
-      this.stripSize = 60})
-      : isStrip = true;
+      this.stripSize = 6})
+      : assert(text != null),
+        isStrip = true;
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -66,11 +72,13 @@ class AnimatedButton extends StatefulWidget {
 class _AnimatedButtonState extends State<AnimatedButton>
     with TickerProviderStateMixin {
   AnimationController _controller;
-  AnimationController _scaleController;
   Animation<double> slideAnimation;
   Animation scaleAnimation;
   double slideBegin;
   double slideEnd;
+
+  // return animationController of check status and animation
+  AnimationController get animationController => _controller;
 
   @override
   void initState() {
@@ -79,10 +87,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       duration: widget.animationDuration,
       vsync: this,
     );
-    _scaleController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+
     if (widget.transitionType == TransitionType.RIGHT_TO_LEFT ||
         widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
       slideBegin = 1.0;
@@ -93,32 +98,26 @@ class _AnimatedButtonState extends State<AnimatedButton>
     }
     slideAnimation =
         Tween(begin: slideBegin, end: slideEnd).animate(_controller);
-    scaleAnimation = Tween(begin: 1.0, end: 0.8).animate(_scaleController);
   }
 
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
+    // unselected/normal text style
+    var textNormal = Text(
+      widget.text,
+      maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
+      overflow: widget.textOverflow ?? defaultTextStyle.overflow,
+      style: widget.textStyle,
+    );
+    // selected text style
+    var textSelected = Text(
+      widget.text,
+      maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
+      overflow: widget.textOverflow ?? defaultTextStyle.overflow,
+      style: widget.textStyle.copyWith(color: widget.selectedTextColor),
+    );
 
-    //  print(_controller.value);
-    //   return AnimatedBuilder(
-    //       animation: _controller,
-    //       builder: (context, child) {
-    //         print("=---------${_controller.value}-=-=${slideAnimation.value}");
-    //
-    //         return ClipPath(
-    //           clipper: RectClipper(slideAnimation.value, widget.transitionType),
-    //           child: InkWell(
-    //             onTap: () => _controller.forward(),
-    //             child: Container(
-    //               width: double.infinity,
-    //               height: 50,
-    //               color: Colors.red,
-    //             ),
-    //           ),
-    //         );
-    //       });
-    //
     return InkWell(
       onTap: () {
         if (widget.isReverse && _controller.isCompleted) {
@@ -130,65 +129,40 @@ class _AnimatedButtonState extends State<AnimatedButton>
       child: Stack(
         children: [
           Container(
-            width: double.infinity,
-            color: Colors.white24,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                if (widget.isStrip)
-                  Container(
-                    width: widget.stripSize,
-                    height: 60,
-                    color: widget.stripColor,
+            width: widget.width,
+            height: widget.height,
+            color: widget.unSelectedBackgroundColor,
+            child: widget.isStrip
+                ? StripAnimated(
+                    stripAlign: widget.transitionType,
+                    stripColor: widget.stripColor,
+                    stripSize: widget.stripSize,
+                    text: textNormal,
+                    textAlignment: widget.textAlignment,
+                  )
+                : Align(
+                    child: textNormal,
+                    alignment: widget.textAlignment,
                   ),
-                SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  widget.text,
-                  maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
-                  overflow: widget.textOverflow ?? defaultTextStyle.overflow,
-                  textAlign: widget.textAlign ?? defaultTextStyle.textAlign,
-                  style: widget.textStyle,
-                )
-              ],
-            ),
           ),
           AnimatedBuilder(
             animation: _controller,
             child: Container(
-              width: double.infinity,
-              color: widget.selectedBackgroundColor,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 5,
-                    height: 60,
-                    color: Colors.white70,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  // Text(
-                  //   widget.number,
-                  //   style: GoogleFonts.nunito(
-                  //       fontSize: 25, color: ColoursHelper.blue_dark()),
-                  // ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    widget.text,
-                    maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
-                    overflow: widget.textOverflow ?? defaultTextStyle.overflow,
-                    textAlign: widget.textAlign ?? defaultTextStyle.textAlign,
-                    style: widget.textStyle
-                        .copyWith(color: widget.selectedTextColor),
-                  )
-                ],
-              ),
-            ),
+                width: widget.width,
+                height: widget.height,
+                color: widget.selectedBackgroundColor,
+                child: widget.isStrip
+                    ? StripAnimated(
+                        stripAlign: widget.transitionType,
+                        stripColor: widget.stripColor,
+                        stripSize: widget.stripSize,
+                        text: textSelected,
+                        textAlignment: widget.textAlignment,
+                      )
+                    : Align(
+                        child: textSelected,
+                        alignment: widget.textAlignment,
+                      )),
             builder: (context, child) {
               return ClipPath(
                 clipper:
@@ -200,5 +174,79 @@ class _AnimatedButtonState extends State<AnimatedButton>
         ],
       ),
     );
+  }
+}
+
+class StripAnimated extends StatelessWidget {
+  final TransitionType stripAlign;
+  final Color stripColor;
+  final double stripSize;
+  final Text text;
+  final AlignmentGeometry textAlignment;
+
+  const StripAnimated(
+      {Key key,
+      this.stripAlign,
+      this.stripColor,
+      this.stripSize,
+      this.text,
+      this.textAlignment})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return stripAlign == TransitionType.BOTTOM_TO_TOP ||
+            stripAlign == TransitionType.TOP_TO_BOTTOM
+        ? Column(
+            children: [
+              if (stripAlign == TransitionType.TOP_TO_BOTTOM)
+                Container(
+                  width: double.infinity,
+                  height: stripSize,
+                  color: stripColor,
+                ),
+              SizedBox(
+                height: stripSize,
+              ),
+              Expanded(
+                child: Align(
+                  child: text,
+                  alignment: textAlignment,
+                ),
+              ),
+              SizedBox(
+                height: stripSize,
+              ),
+              if (stripAlign == TransitionType.BOTTOM_TO_TOP)
+                Container(
+                  width: double.infinity,
+                  height: stripSize,
+                  color: stripColor,
+                ),
+            ],
+          )
+        : Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (stripAlign == TransitionType.LEFT_TO_RIGHT)
+                Container(
+                  width: stripSize,
+                  height: double.infinity,
+                  color: stripColor,
+                ),
+              Expanded(
+                child: Align(
+                  child: text,
+                  alignment: textAlignment,
+                ),
+              ),
+              if (stripAlign == TransitionType.RIGHT_TO_LEFT)
+                Container(
+                  width: stripSize,
+                  height: double.infinity,
+                  color: stripColor,
+                ),
+            ],
+          );
   }
 }
