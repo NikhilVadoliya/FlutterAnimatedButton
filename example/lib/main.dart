@@ -42,113 +42,111 @@ class AnimatedButtonDemo extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: ListView(
-              children: [
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: ListView(
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton(
+                width: 200,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.BOTTOM_TO_TOP,
+                textStyle: submitTextStyle,
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton(
                   width: 200,
                   text: 'SUBMIT',
                   isReverse: true,
                   selectedTextColor: Colors.black,
-                  transitionType: TransitionType.BOTTOM_TO_TOP,
-                  textStyle: submitTextStyle,
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton(
-                    width: 200,
-                    text: 'SUBMIT',
-                    isReverse: true,
-                    selectedTextColor: Colors.black,
-                    transitionType: TransitionType.TOP_TO_BOTTOM,
-                    textStyle: submitTextStyle),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton(
-                    width: 200,
-                    text: 'SUBMIT',
-                    isReverse: true,
-                    selectedTextColor: Colors.black,
-                    transitionType: TransitionType.RIGHT_TO_LEFT,
-                    textStyle: submitTextStyle),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton(
-                    width: 200,
-                    text: 'SUBMIT',
-                    isReverse: true,
-                    selectedTextColor: Colors.black,
-                    transitionType: TransitionType.LEFT_TO_RIGHT,
-                    textStyle: submitTextStyle),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton.strip(
-                  width: 200,
-                  textAlignment: Alignment.center,
-                  text: 'Tokyo',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.LEFT_TO_RIGHT,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle,
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton.strip(
-                  textAlignment: Alignment.center,
-                  text: 'Tokyo',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.RIGHT_TO_LEFT,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: GoogleFonts.nunito(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton.strip(
-                  textAlignment: Alignment.center,
-                  text: 'Tokyo',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),stripSize: 2,
                   transitionType: TransitionType.TOP_TO_BOTTOM,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: GoogleFonts.nunito(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                AnimatedButton.strip(
-                  textAlignment: Alignment.center,
-                  text: 'Tokyo',
+                  textStyle: submitTextStyle),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton(
+                  width: 200,
+                  text: 'SUBMIT',
                   isReverse: true,
-                  stripSize: 2,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.BOTTOM_TO_TOP,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: GoogleFonts.nunito(
-                      fontSize: 28,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
+                  selectedTextColor: Colors.black,
+                  transitionType: TransitionType.RIGHT_TO_LEFT,
+                  textStyle: submitTextStyle),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton(
+                  width: 200,
+                  text: 'SUBMIT',
+                  isReverse: true,
+                  selectedTextColor: Colors.black,
+                  transitionType: TransitionType.LEFT_TO_RIGHT,
+                  textStyle: submitTextStyle),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton.strip(
+                width: 200,
+                textAlignment: Alignment.center,
+                text: 'Tokyo',
+                isReverse: true,
+                selectedTextColor: ColoursHelper.blue(),
+                transitionType: TransitionType.LEFT_TO_RIGHT,
+                selectedBackgroundColor: Colors.white,
+                textStyle: submitTextStyle,
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton.strip(
+                textAlignment: Alignment.center,
+                text: 'Tokyo',
+                isReverse: true,
+                selectedTextColor: ColoursHelper.blue(),
+                transitionType: TransitionType.RIGHT_TO_LEFT,
+                selectedBackgroundColor: Colors.white,
+                textStyle: GoogleFonts.nunito(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton.strip(
+                textAlignment: Alignment.center,
+                text: 'Tokyo',
+                isReverse: true,
+                selectedTextColor: ColoursHelper.blue(),stripSize: 2,
+                transitionType: TransitionType.TOP_TO_BOTTOM,
+                selectedBackgroundColor: Colors.white,
+                textStyle: GoogleFonts.nunito(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              AnimatedButton.strip(
+                textAlignment: Alignment.center,
+                text: 'Tokyo',
+                isReverse: true,
+                stripSize: 2,
+                selectedTextColor: ColoursHelper.blue(),
+                transitionType: TransitionType.BOTTOM_TO_TOP,
+                selectedBackgroundColor: Colors.white,
+                textStyle: GoogleFonts.nunito(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              )
+            ],
           ),
         ),
       ),

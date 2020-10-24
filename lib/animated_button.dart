@@ -19,6 +19,7 @@ class AnimatedButton extends StatefulWidget {
   final VoidCallback onPress;
   final TransitionType transitionType;
   final bool isStrip;
+
   final Color stripColor;
   final double stripSize;
 
@@ -103,14 +104,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    // unselected/normal text style
+    // unselected/normal text
     var textNormal = Text(
       widget.text,
       maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
       overflow: widget.textOverflow ?? defaultTextStyle.overflow,
       style: widget.textStyle,
     );
-    // selected text style
+    // selected text
     var textSelected = Text(
       widget.text,
       maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
@@ -118,7 +119,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
     );
 
-    return InkWell(
+    var selectedButtonClick = InkWell(
       onTap: () {
         if (widget.isReverse && _controller.isCompleted) {
           _controller.reverse();
@@ -126,54 +127,81 @@ class _AnimatedButtonState extends State<AnimatedButton>
           _controller.forward();
         }
       },
-      child: Stack(
-        children: [
-          Container(
-            width: widget.width,
-            height: widget.height,
-            color: widget.unSelectedBackgroundColor,
-            child: widget.isStrip
-                ? StripAnimated(
-                    stripAlign: widget.transitionType,
-                    stripColor: widget.stripColor,
-                    stripSize: widget.stripSize,
-                    text: textNormal,
-                    textAlignment: widget.textAlignment,
-                  )
-                : Align(
+      child: textSelected,
+    );
+    var normalButtonClick = InkWell(
+      onTap: () {
+        if (widget.isReverse && _controller.isCompleted) {
+          _controller.reverse();
+        } else {
+          _controller.forward();
+        }
+      },
+      child: textSelected,
+    );
+
+    return Stack(
+      children: [
+        Container(
+          width: widget.width,
+          height: widget.height,
+          color: widget.unSelectedBackgroundColor,
+          child: widget.isStrip
+              ? StripAnimated(
+                  stripAlign: widget.transitionType,
+                  stripColor: widget.stripColor,
+                  stripSize: widget.stripSize,
+                  text: textNormal,
+                  onTap: () => onButtonClick(),
+                  textAlignment: widget.textAlignment,
+                )
+              : InkWell(
+                  onTap: () => onButtonClick(),
+                  child: Align(
                     child: textNormal,
                     alignment: widget.textAlignment,
                   ),
-          ),
-          AnimatedBuilder(
-            animation: _controller,
-            child: Container(
-                width: widget.width,
-                height: widget.height,
-                color: widget.selectedBackgroundColor,
-                child: widget.isStrip
-                    ? StripAnimated(
-                        stripAlign: widget.transitionType,
-                        stripColor: widget.stripColor,
-                        stripSize: widget.stripSize,
-                        text: textSelected,
-                        textAlignment: widget.textAlignment,
-                      )
-                    : Align(
+                ),
+        ),
+        AnimatedBuilder(
+          animation: _controller,
+          child: Container(
+              width: widget.width,
+              height: widget.height,
+              color: widget.selectedBackgroundColor,
+              child: widget.isStrip
+                  ? StripAnimated(
+                      stripAlign: widget.transitionType,
+                      stripColor: widget.stripColor,
+                      stripSize: widget.stripSize,
+                      text: textSelected,
+                      onTap: () => onButtonClick(),
+                      textAlignment: widget.textAlignment,
+                    )
+                  : InkWell(
+                      onTap: () => onButtonClick(),
+                      child: Align(
                         child: textSelected,
                         alignment: widget.textAlignment,
-                      )),
-            builder: (context, child) {
-              return ClipPath(
-                clipper:
-                    RectClipper(slideAnimation.value, widget.transitionType),
-                child: child,
-              );
-            },
-          ),
-        ],
-      ),
+                      ),
+                    )),
+          builder: (context, child) {
+            return ClipPath(
+              clipper: RectClipper(slideAnimation.value, widget.transitionType),
+              child: child,
+            );
+          },
+        ),
+      ],
     );
+  }
+
+  onButtonClick() {
+    if (widget.isReverse && _controller.isCompleted) {
+      _controller.reverse();
+    } else {
+      _controller.forward();
+    }
   }
 }
 
@@ -182,6 +210,7 @@ class StripAnimated extends StatelessWidget {
   final Color stripColor;
   final double stripSize;
   final Text text;
+  final VoidCallback onTap;
   final AlignmentGeometry textAlignment;
 
   const StripAnimated(
@@ -190,7 +219,8 @@ class StripAnimated extends StatelessWidget {
       this.stripColor,
       this.stripSize,
       this.text,
-      this.textAlignment})
+      this.textAlignment,
+      this.onTap})
       : super(key: key);
 
   @override
@@ -209,9 +239,12 @@ class StripAnimated extends StatelessWidget {
                 height: stripSize,
               ),
               Expanded(
-                child: Align(
-                  child: text,
-                  alignment: textAlignment,
+                child: InkWell(
+                  onTap: () => onTap(),
+                  child: Align(
+                    child: text,
+                    alignment: textAlignment,
+                  ),
                 ),
               ),
               SizedBox(
@@ -235,9 +268,12 @@ class StripAnimated extends StatelessWidget {
                   color: stripColor,
                 ),
               Expanded(
-                child: Align(
-                  child: text,
-                  alignment: textAlignment,
+                child: InkWell(
+                  onTap: () => onTap(),
+                  child: Align(
+                    child: text,
+                    alignment: textAlignment,
+                  ),
                 ),
               ),
               if (stripAlign == TransitionType.RIGHT_TO_LEFT)
