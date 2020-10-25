@@ -74,4 +74,4 @@ If you encounter any problems feel free to open an [issue](https://github.com/Ni
 License
 ----
 
-BSD 2-Clause License
+MIT License
