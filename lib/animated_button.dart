@@ -225,64 +225,69 @@ class StripAnimated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return stripAlign == TransitionType.BOTTOM_TO_TOP ||
-            stripAlign == TransitionType.TOP_TO_BOTTOM
-        ? Column(
-            children: [
-              if (stripAlign == TransitionType.TOP_TO_BOTTOM)
-                Container(
-                  width: double.infinity,
-                  height: stripSize,
-                  color: stripColor,
-                ),
-              SizedBox(
-                height: stripSize,
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () => onTap(),
-                  child: Align(
-                    child: text,
-                    alignment: textAlignment,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: stripSize,
-              ),
-              if (stripAlign == TransitionType.BOTTOM_TO_TOP)
-                Container(
-                  width: double.infinity,
-                  height: stripSize,
-                  color: stripColor,
-                ),
-            ],
-          )
-        : Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (stripAlign == TransitionType.LEFT_TO_RIGHT)
-                Container(
-                  width: stripSize,
-                  height: double.infinity,
-                  color: stripColor,
-                ),
-              Expanded(
-                child: InkWell(
-                  onTap: () => onTap(),
-                  child: Align(
-                    child: text,
-                    alignment: textAlignment,
-                  ),
+    if (stripAlign == TransitionType.BOTTOM_TO_TOP ||
+        stripAlign == TransitionType.TOP_TO_BOTTOM) {
+      return Column(
+        children: [
+          if (stripAlign == TransitionType.TOP_TO_BOTTOM)
+            Container(
+              width: double.infinity,
+              height: stripSize,
+              color: stripColor,
+            ),
+          Expanded(
+            child: InkWell(
+              onTap: () => onTap(),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: stripAlign == TransitionType.TOP_TO_BOTTOM
+                        ? 0
+                        : stripSize,
+                    bottom: stripAlign == TransitionType.BOTTOM_TO_TOP
+                        ? 0
+                        : stripSize),
+                child: Align(
+                  child: text,
+                  alignment: textAlignment,
                 ),
               ),
-              if (stripAlign == TransitionType.RIGHT_TO_LEFT)
-                Container(
-                  width: stripSize,
-                  height: double.infinity,
-                  color: stripColor,
-                ),
-            ],
-          );
+            ),
+          ),
+          if (stripAlign == TransitionType.BOTTOM_TO_TOP)
+            Container(
+              width: double.infinity,
+              height: stripSize,
+              color: stripColor,
+            ),
+        ],
+      );
+    } else {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          if (stripAlign == TransitionType.LEFT_TO_RIGHT)
+            Container(
+              width: stripSize,
+              height: double.infinity,
+              color: stripColor,
+            ),
+          Expanded(
+            child: InkWell(
+              onTap: () => onTap(),
+              child: Align(
+                child: text,
+                alignment: textAlignment,
+              ),
+            ),
+          ),
+          if (stripAlign == TransitionType.RIGHT_TO_LEFT)
+            Container(
+              width: stripSize,
+              height: double.infinity,
+              color: stripColor,
+            ),
+        ],
+      );
+    }
   }
 }
