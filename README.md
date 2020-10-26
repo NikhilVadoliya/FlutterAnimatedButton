@@ -1,13 +1,8 @@
 # Flutter animated button
 
-//
-//
-//
-//
-//-------Animated_Button_Images----------
-//
-//
-//
+![Plugin example demo](assets/normal_1.gif)![Plugin example demo](assets/strip_1.gif)
+
+
 
 A flutter package which contains a collection of some cool and awesome button animations.
 
