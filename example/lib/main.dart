@@ -38,98 +38,108 @@ class AnimatedButtonDemo extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: ListView(
-            children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
               SizedBox(
-                height: 50,
-              ),
-              AnimatedButton(
+              height: 50,
+            ),
+            AnimatedButton(
+              height: 70,
+              width: 200,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.BOTTOM_TO_TOP,
+              textStyle: submitTextStyle,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton(
+                height: 70,
                 width: 200,
                 text: 'SUBMIT',
                 isReverse: true,
                 selectedTextColor: Colors.black,
-                transitionType: TransitionType.BOTTOM_TO_TOP,
-                textStyle: submitTextStyle,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  transitionType: TransitionType.TOP_TO_BOTTOM,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  transitionType: TransitionType.RIGHT_TO_LEFT,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  transitionType: TransitionType.LEFT_TO_RIGHT,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
+                transitionType: TransitionType.TOP_TO_BOTTOM,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton(
+                height: 70,
                 width: 200,
                 text: 'SUBMIT',
                 isReverse: true,
-                selectedTextColor: ColoursHelper.blue(),
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.RIGHT_TO_LEFT,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton(
+                height: 70,
+                width: 200,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
                 transitionType: TransitionType.LEFT_TO_RIGHT,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+           /* AnimatedButton.strip(
+              width: 200,
+              height: 70,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.LEFT_TO_RIGHT,
+              selectedBackgroundColor: Colors.white,
+              textStyle: submitTextStyle,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+                width: 200,
+                height: 70,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.RIGHT_TO_LEFT,
                 selectedBackgroundColor: Colors.white,
-                textStyle: submitTextStyle,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.RIGHT_TO_LEFT,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.TOP_TO_BOTTOM,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: ColoursHelper.blue(),
-                  transitionType: TransitionType.BOTTOM_TO_TOP,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle)
-            ],
-          ),
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+                width: 200,
+                height: 70,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.TOP_TO_BOTTOM,
+                selectedBackgroundColor: Colors.white,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+                width: 200,
+                height: 70,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.BOTTOM_TO_TOP,
+                selectedBackgroundColor: Colors.white,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),*/
+          ],
         ),
       ),
     );
