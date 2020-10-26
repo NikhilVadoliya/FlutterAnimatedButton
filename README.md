@@ -6,8 +6,6 @@
 
 A flutter package which contains a collection of some cool and awesome button animations.
 
-![Plugin example demo](demo.gif)
-
 
 # Installing
 
