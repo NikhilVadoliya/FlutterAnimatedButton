@@ -63,7 +63,7 @@ You can override the `animationDuration` of animation of the button by setting i
 
 #### AnimatedButton
 
-<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "right" height = "300px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "right" height = "260px" width= "430px">
 
 ```dart
   AnimatedButton(
@@ -99,6 +99,7 @@ You can override the `animationDuration` of animation of the button by setting i
                   letterSpacing: 5,
                   color: Colors.white,
                   fontWeight: FontWeight.w300),
+            ),
 ```
 # Available **Animations** Types
 
