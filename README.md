@@ -63,7 +63,7 @@ You can override the `animationDuration` of animation of the button by setting i
 
 #### AnimatedButton
 
-<img src="https://github.com/aagarwal1012/Animated-Text-Kit/blob/master/display/rotate.gif?raw=true" align = "right" height = "300px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "right" height = "300px">
 
 ```dart
   AnimatedButton(
