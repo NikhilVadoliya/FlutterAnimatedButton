@@ -39,7 +39,10 @@ Now in your `Dart` code, you can use:
 
 ```dart
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+
 ```
+</br>
+</br>
 
 # Usage
 
@@ -58,6 +61,10 @@ You can override the `animationDuration` of animation of the button by setting i
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
 ```
+
+</br>
+</br>
+
 
 # Available **Animations**
 
@@ -101,6 +108,9 @@ You can override the `animationDuration` of animation of the button by setting i
                   fontWeight: FontWeight.w300),
             ),
 ```
+</br>
+</br>
+
 # Available **Animations** Types
 
 #### AnimatedButton
@@ -115,6 +125,9 @@ You can override the `animationDuration` of animation of the button by setting i
  - TOP_TO_BOTTOM
  - BOTTOM_TO_TOP
  
+ </br>
+</br>
+
 
 # Bugs or Requests
 
