@@ -59,6 +59,19 @@ You can override the `animationDuration` of animation of the button by setting i
                     fontWeight: FontWeight.w300),
 ```
 
+# Available **Animations**
+
+#### AnimatedButton
+ - LEFT_TO_RIGHT
+ - RIGHT_TO_LEFT
+ - TOP_TO_BOTTOM
+ - BOTTOM_TO_TOP
+ 
+#### AnimatedButton.strip
+ - LEFT_TO_RIGHT
+ - RIGHT_TO_LEFT
+ - TOP_TO_BOTTOM
+ - BOTTOM_TO_TOP
 
 # Bugs or Requests
 
