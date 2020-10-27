@@ -62,6 +62,47 @@ You can override the `animationDuration` of animation of the button by setting i
 # Available **Animations**
 
 #### AnimatedButton
+
+<img src="https://github.com/aagarwal1012/Animated-Text-Kit/blob/master/display/rotate.gif?raw=true" align = "right" height = "300px">
+
+```dart
+  AnimatedButton(
+              height: 70,
+              width: 200,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.BOTTOM_TO_TOP,
+              textStyle: GoogleFonts.nunito(
+                  fontSize: 28,
+                  letterSpacing: 5,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300),
+            ),
+```
+
+#### AnimatedButton.strip
+
+<img src="https://github.com/aagarwal1012/Animated-Text-Kit/blob/master/display/rotate.gif?raw=true" align = "right" height = "300px">
+
+```dart
+  AnimatedButton.strip(
+              width: 200,
+              height: 70,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.LEFT_TO_RIGHT,
+              selectedBackgroundColor: Colors.white,
+              textStyle: GoogleFonts.nunito(
+                  fontSize: 28,
+                  letterSpacing: 5,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300),
+```
+# Available **Animations** Types
+
+#### AnimatedButton
  - LEFT_TO_RIGHT
  - RIGHT_TO_LEFT
  - TOP_TO_BOTTOM
@@ -72,6 +113,7 @@ You can override the `animationDuration` of animation of the button by setting i
  - RIGHT_TO_LEFT
  - TOP_TO_BOTTOM
  - BOTTOM_TO_TOP
+ 
 
 # Bugs or Requests
 
