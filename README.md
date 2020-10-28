@@ -97,6 +97,23 @@ You can override the `animationDuration` of animation of the button by setting i
              borderWidth: 2,
            ),
 ```
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/rounder_2_min.gif?raw=true" align = "right" height = "260px" width= "430px">
+
+```dart
+    AnimatedButton(
+              height: 70,
+              width: 200,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.LEFT_TO_RIGHT,
+              textStyle: submitTextStyle,
+              unSelectedBackgroundColor: Colors.black,
+              borderColor: Colors.white,
+              borderRadius: 50,
+              borderWidth: 2,
+            ),
+```
 ## AnimatedButton.strip
 
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "right" height = "275px" width= "430px">
