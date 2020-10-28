@@ -18,8 +18,13 @@ class AnimatedButton extends StatefulWidget {
   final double height;
   final VoidCallback onPress;
   final TransitionType transitionType;
-  final bool isStrip;
 
+  //button border
+  final Color borderColor;
+  final double borderWidth;
+  final double borderRadius;
+
+  final bool isStrip;
   final Color stripColor;
   final double stripSize;
 
@@ -38,6 +43,9 @@ class AnimatedButton extends StatefulWidget {
       this.textAlignment = Alignment.center,
       this.height = 50,
       this.width = double.infinity,
+      this.borderColor = Colors.transparent,
+      this.borderRadius = 0,
+      this.borderWidth = 0,
       this.animationDuration = const Duration(milliseconds: 500)})
       : assert(text != null),
         isStrip = false,
@@ -64,6 +72,9 @@ class AnimatedButton extends StatefulWidget {
       this.stripColor = Colors.white,
       this.stripSize = 6})
       : assert(text != null),
+        borderRadius = 0,
+        borderWidth = 0,
+        borderColor=Colors.transparent,
         isStrip = true;
 
   @override
@@ -119,33 +130,19 @@ class _AnimatedButtonState extends State<AnimatedButton>
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
     );
 
-    var selectedButtonClick = InkWell(
-      onTap: () {
-        if (widget.isReverse && _controller.isCompleted) {
-          _controller.reverse();
-        } else {
-          _controller.forward();
-        }
-      },
-      child: textSelected,
-    );
-    var normalButtonClick = InkWell(
-      onTap: () {
-        if (widget.isReverse && _controller.isCompleted) {
-          _controller.reverse();
-        } else {
-          _controller.forward();
-        }
-      },
-      child: textSelected,
-    );
-
     return Stack(
       children: [
         Container(
           width: widget.width,
           height: widget.height,
-          color: widget.unSelectedBackgroundColor,
+          decoration: BoxDecoration(
+            color: widget.unSelectedBackgroundColor,
+            border: Border.all(
+              color: widget.borderColor,
+              width: widget.borderWidth,
+            ),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
           child: widget.isStrip
               ? StripAnimated(
                   stripAlign: widget.transitionType,
@@ -168,7 +165,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
           child: Container(
               width: widget.width,
               height: widget.height,
-              color: widget.selectedBackgroundColor,
+              decoration: BoxDecoration(
+                color: widget.selectedBackgroundColor,
+                border: Border.all(
+                  color: Colors.white,
+                  width: widget.borderWidth,
+                ),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
+              ),
               child: widget.isStrip
                   ? StripAnimated(
                       stripAlign: widget.transitionType,
