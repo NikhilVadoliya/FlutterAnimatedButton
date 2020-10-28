@@ -74,7 +74,7 @@ class AnimatedButton extends StatefulWidget {
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
-        borderColor=Colors.transparent,
+        borderColor = Colors.transparent,
         isStrip = true;
 
   @override
@@ -153,6 +153,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                   textAlignment: widget.textAlignment,
                 )
               : InkWell(
+                  borderRadius: BorderRadius.circular(widget.borderRadius),
                   onTap: () => onButtonClick(),
                   child: Align(
                     child: textNormal,
@@ -183,6 +184,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                       textAlignment: widget.textAlignment,
                     )
                   : InkWell(
+                      borderRadius: BorderRadius.circular(widget.borderRadius),
                       onTap: () => onButtonClick(),
                       child: Align(
                         child: textSelected,
