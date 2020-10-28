@@ -61,7 +61,7 @@ You can override the `animationDuration` of animation of the button by setting i
 
 # Available **Animations**
 
-#### AnimatedButton
+### AnimatedButton
 
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "right" height = "260px" width= "430px">
 
@@ -80,10 +80,26 @@ You can override the `animationDuration` of animation of the button by setting i
                   fontWeight: FontWeight.w300),
             ),
 ```
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/border-1-min.gif?raw=true" align = "right" height = "260px" width= "430px">
 
+```dart
+  AnimatedButton(
+             height: 70,
+             width: 200,
+             text: 'SUBMIT',
+             isReverse: true,
+             selectedTextColor: Colors.black,
+             transitionType: TransitionType.LEFT_TO_RIGHT,
+             textStyle: submitTextStyle,
+             unSelectedBackgroundColor: Colors.black,
+             borderColor: Colors.white,
+             borderRadius: 0,
+             borderWidth: 2,
+           ),
+```
 #### AnimatedButton.strip
 
-<img src="https://github.com/aagarwal1012/Animated-Text-Kit/blob/master/display/rotate.gif?raw=true" align = "right" height = "300px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "right" height = "275px" width= "430px">
 
 ```dart
   AnimatedButton.strip(
@@ -101,6 +117,10 @@ You can override the `animationDuration` of animation of the button by setting i
                   fontWeight: FontWeight.w300),
             ),
 ```
+</br>
+</br>
+
+
 # Available **Animations** Types
 
 #### AnimatedButton
