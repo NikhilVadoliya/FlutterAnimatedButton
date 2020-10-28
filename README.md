@@ -1,10 +1,10 @@
-# Flutter animated button
+# Flutter Animated Button :dizzy: :champagne:	
+A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
 
 ![Plugin example demo](assets/normal_1.gif)![Plugin example demo](assets/strip_1.gif)
 
 
 
-A flutter package which contains a collection of some cool and awesome button animations.
 
 
 # Installing
@@ -66,7 +66,7 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 
 
-# Available **Animations**
+# Available **Animations** 	:dizzy:	
 
 #### AnimatedButton
 
@@ -111,7 +111,7 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
-# Available **Animations** Types
+# Available **Animations** Types :sparkles:	
 
 #### AnimatedButton
  - LEFT_TO_RIGHT
@@ -129,11 +129,11 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 
 
-# Bugs or Requests
+# Bugs or Requests :bug:	
 
 If you encounter any problems feel free to open an [issue](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=feature_request.md) on GitHub and I'll look into it. Pull request are also welcome.
 
-License
+License :closed_lock_with_key:	
 ----
 
 MIT License
