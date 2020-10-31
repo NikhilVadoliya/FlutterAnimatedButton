@@ -1,7 +1,7 @@
 # Flutter Animated Button :dizzy: :champagne:	
 A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
 
-![Plugin example demo](assets/banner.gif)
+<div align="center"><img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif?raw=true"/></div>  
 
 
 
