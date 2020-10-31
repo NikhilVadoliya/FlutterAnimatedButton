@@ -1,7 +1,7 @@
 # Flutter Animated Button :dizzy: :champagne:	
 A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
 
-![Plugin example demo](assets/normal_1.gif)![Plugin example demo](assets/strip_1.gif)
+![Plugin example demo](assets/banner.gif)
 
 
 
@@ -52,7 +52,6 @@ You can override the `animationDuration` of animation of the button by setting i
  AnimatedButton(
                 width: 200,
                 text: 'SUBMIT',
-                isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.BOTTOM_TO_TOP,
                 textStyle: TextStyle(
