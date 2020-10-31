@@ -22,7 +22,7 @@
     <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
   </a>  
 </div><br>  
-</br>
+
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
 
 
