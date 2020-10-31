@@ -1,6 +1,6 @@
-# Flutter Animated Button :dizzy: :champagne:	
+# Flutter Animated Button :dizzy: :champagne:	 
 
-<div align="center">  
+<div align="left">  
    <a href="https://flutter.io">  
     <img src="https://img.shields.io/badge/plateform-flutter-orange"  
       alt="Platform" />  
@@ -21,13 +21,8 @@
    <a href="#">  
     <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
   </a>  
-  
- 
-
-   
 </div><br>  
 A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
-  [![HitCount](http://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg)](http://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton)
 
 
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
