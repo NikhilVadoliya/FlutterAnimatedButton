@@ -22,9 +22,7 @@
     <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
   </a>  
 </div><br>  
-A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
-
-
+</br>
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
 
 
