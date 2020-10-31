@@ -1,3 +1,6 @@
-## [0.0.1] - TODO: Add release date.
+## [0.1.0]   31-Oct-2020 :package: :rocket:
 
-* TODO: Describe initial release.
+* Initial Release.
+* Provide basic slide animation with customization of color, sizes and textStyle.
+* Provide AnimationController for get status of animation and handle animation 
+
