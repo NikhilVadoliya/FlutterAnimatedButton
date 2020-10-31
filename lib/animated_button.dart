@@ -119,27 +119,6 @@ class _AnimatedButtonState extends State<AnimatedButton>
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
     );
 
-    var selectedButtonClick = InkWell(
-      onTap: () {
-        if (widget.isReverse && _controller.isCompleted) {
-          _controller.reverse();
-        } else {
-          _controller.forward();
-        }
-      },
-      child: textSelected,
-    );
-    var normalButtonClick = InkWell(
-      onTap: () {
-        if (widget.isReverse && _controller.isCompleted) {
-          _controller.reverse();
-        } else {
-          _controller.forward();
-        }
-      },
-      child: textSelected,
-    );
-
     return Stack(
       children: [
         Container(
