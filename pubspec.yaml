@@ -1,7 +1,6 @@
 name: flutter_animated_button
 description: A flutter package project which contains a collection of cool and beautiful button animations.
-version: 0.1.0
-author: vadoliya.nikhil99@gmail.com
+version: 0.1.1
 homepage: https://github.com/NikhilVadoliya/FlutterAnimatedButton
 
 environment:
