@@ -78,6 +78,7 @@ You can override the `animationDuration` of animation of the button by setting i
                     letterSpacing: 5,
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
+              )
 ```
 
 </br>
