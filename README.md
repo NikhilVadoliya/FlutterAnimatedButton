@@ -1,5 +1,33 @@
 # Flutter Animated Button :dizzy: :champagne:	
+
+<div align="center">  
+   <a href="https://flutter.io">  
+    <img src="https://img.shields.io/badge/plateform-flutter-orange"  
+      alt="Platform" />  
+  </a>  
+   <a href="https://pub.dartlang.org/packages/animated_text_kit">  
+    <img src="https://img.shields.io/pub/v/flutter_animated_button"  
+      alt="Pub Package" />  
+     
+   <a href="https://opensource.org/licenses/MIT">  
+    <img src="https://img.shields.io/badge/License-MIT-red.svg"  
+      alt="License: MIT" />  
+  </a>  
+   <a href="#">  
+    <img src="https://img.shields.io/github/languages/code-size/NikhilVadoliya/FlutterAnimatedButton"/>  
+  </a>  
+  
+   </a>  
+   <a href="#">  
+    <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
+  </a>  
+  
+ 
+
+   
+</div><br>  
 A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
+  [![HitCount](http://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg)](http://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton)
 
 
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
