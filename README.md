@@ -1,13 +1,11 @@
 # Flutter Animated Button :dizzy: :champagne:	
 A flutter package which contains a collection of some cool and awesome button animations.:rocket:	
 
-![Plugin example demo](assets/banner.gif)
+
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
 
 
-
-
-
-# Installing
+## Installing
 
 ### 1. Depend on it
 Add this to your package's `pubspec.yaml` file:
