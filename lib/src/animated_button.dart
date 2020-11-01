@@ -18,12 +18,16 @@ class AnimatedButton extends StatefulWidget {
 
   ///[Color] button background colour which displaying when
   ///the user deselect button
-  final Color unSelectedBackgroundColor;
+  final Color backgroundColor;
 
   /// [bool] [true] - you can select and deselect button after select/deselect it
   /// [false] - you can't deselect it after select it.
   /// by Default is [false]
   final bool isReverse;
+
+  ///[bool]  [true] - user can interact with button and called onPress function
+  ///when user click on it. [false] - user can interact with button.
+  final bool enable;
 
   // An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
@@ -72,8 +76,12 @@ class AnimatedButton extends StatefulWidget {
   final double height;
 
   /// Adds the onTap [VoidCallback] to the animated button.
-  ///
   final VoidCallback onPress;
+
+  /// called this function when user press on button and pass value of button
+  /// [true] - button selected
+  /// [false] - button deSelected
+  final ValueChanged<bool> onChanges;
 
   /// [TransitionType]  type of animation which apply to Button
   /// by Default it is TransitionType.LEFT_TO_RIGHT
@@ -95,19 +103,21 @@ class AnimatedButton extends StatefulWidget {
   const AnimatedButton(
       {Key key,
       @required this.text,
-      this.onPress,
+      @required this.onPress,
       this.transitionType = TransitionType.LEFT_TO_RIGHT,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
       this.selectedTextColor = Colors.blue,
       this.selectedBackgroundColor = Colors.white,
-      this.unSelectedBackgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white24,
       this.isReverse = false,
       this.textMaxLine,
       this.textOverflow,
       this.textAlignment = Alignment.center,
       this.height = 50,
       this.width = double.infinity,
-      this.animationDuration = const Duration(milliseconds: 500)})
+      this.animationDuration = const Duration(milliseconds: 500),
+      this.enable = true,
+      this.onChanges})
       : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -129,9 +139,11 @@ class AnimatedButton extends StatefulWidget {
       this.textAlignment = Alignment.center,
       this.animationDuration = const Duration(milliseconds: 500),
       this.onPress,
-      this.unSelectedBackgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white24,
       this.stripColor = Colors.white,
-      this.stripSize = 6})
+      this.stripSize = 6,
+      this.enable = true,
+      this.onChanges})
       : assert(text != null),
         isStrip = true;
 
@@ -173,7 +185,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    // unselected/normal text
+    // deSelected/normal text
     var textNormal = Text(
       widget.text,
       maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
@@ -193,7 +205,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         Container(
           width: widget.width,
           height: widget.height,
-          color: widget.unSelectedBackgroundColor,
+          color: widget.backgroundColor,
           child: widget.isStrip
               ? StripAnimated(
                   stripAlign: widget.transitionType,
@@ -245,10 +257,15 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   onButtonClick() {
-    if (widget.isReverse && _controller.isCompleted) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
+    if (widget.enable) {
+      if (widget.isReverse && _controller.isCompleted) {
+        _controller.reverse();
+        widget.onChanges(false);
+      } else {
+        _controller.forward();
+        widget.onChanges(true);
+      }
+      widget.onPress();
     }
   }
 }
