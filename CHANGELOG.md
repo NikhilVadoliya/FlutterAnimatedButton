@@ -1,3 +1,10 @@
+## [0.2.0]   01-Nov-2020  :rocket:
+
+* Improve document quality.
+* Add ```enable``` button feature
+* Add ```onChange``` funcion which return status of button (```true``` - selected , ```false``` - Deselected)
+* Bug fixed
+
 ## [0.1.0]   31-Oct-2020 :package: :rocket:
 
 * Initial Release.
