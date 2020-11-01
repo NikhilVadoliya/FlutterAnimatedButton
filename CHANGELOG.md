@@ -1,3 +1,7 @@
+## [0.2.1]   01-Nov-2020  :rocket:
+
+* Bug fixed
+
 ## [0.2.0]   01-Nov-2020  :rocket:
 
 * Improve document quality.
