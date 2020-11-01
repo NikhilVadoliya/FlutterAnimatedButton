@@ -23,7 +23,7 @@
   </a>  
 </div><br>  
 
-<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/banner.gif"/>
+<img src="https://raw.githubusercontent.com/NikhilVadoliya/FlutterAnimatedButton/main/assets/banner.gif"/>
 
 
 ## Installing
