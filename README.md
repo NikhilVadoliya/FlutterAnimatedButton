@@ -142,6 +142,7 @@ You can override the `animationDuration` of animation of the button by setting i
 ```
 
 </br>
+
 ## AnimatedButton.strip
 
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "left" height = "275px" width= "430px">
