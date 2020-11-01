@@ -1,51 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_animated_button/src/rect_clipper.dart';
+import 'package:flutter_animated_button/src/transition_type.dart';
 
 class AnimatedButton extends StatefulWidget {
+  /// [String] text of button
   final String text;
+
+  /// [TextStyle] textStyle of button's text
   final TextStyle textStyle;
+
+  /// [Color] text colour which displaying  when the user press on the button / select it
   final Color selectedTextColor;
+
+  /// [Color] button background colour which displaying
+  /// when the user press on button / select it
   final Color selectedBackgroundColor;
-  final Color unSelectedBackgroundColor;
+
+  ///[Color] button background colour which displaying when
+  ///the user deselect button
+  final Color backgroundColor;
+
+  /// [bool] [true] - you can select and deselect button after select/deselect it
+  /// [false] - you can't deselect it after select it.
+  /// by Default is [false]
   final bool isReverse;
+
+  ///[bool]  [true] - user can interact with button and called onPress function
+  ///when user click on it. [false] - user can interact with button.
+  final bool enable;
+
+  // An optional maximum number of lines for the text to span, wrapping if necessary.
+  /// If the text exceeds the given number of lines, it will be truncated according
+  /// to [overflow].
+  ///
+  /// If this is 1, text will not wrap. Otherwise, text will be wrapped at the
+  /// edge of the box.
+  ///
+  /// If this is null, but there is an ambient [DefaultTextStyle] that specifies
+  /// an explicit number for its [DefaultTextStyle.maxLines], then the
+  /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
+  /// widget directly to entirely override the [DefaultTextStyle].
   final int textMaxLine;
+
+  /// How visual overflow should be handled.
+  ///
+  /// Defaults to retrieving the value from the nearest [DefaultTextStyle] ancestor.
   final TextOverflow textOverflow;
+
+  /// The x and y values of the [Alignment] control the horizontal and vertical
+  /// alignment, respectively. An x value of -1.0 means that the left edge of
+  /// the child is aligned with the left edge of the parent whereas an x value
+  /// of 1.0 means that the right edge of the child is aligned with the right
+  /// edge of the parent. Other values interpolate (and extrapolate) linearly.
+  /// For example, a value of 0.0 means that the center of the child is aligned
+  /// with the center of the parent.
+  ///
+  /// See also:
+  ///
+  ///  * [Alignment], which has more details and some convenience constants for
+  ///    common positions.
+  ///  * [AlignmentDirectional], which has a horizontal coordinate orientation
+  ///    that depends on the [TextDirection].
   final AlignmentGeometry textAlignment;
+
+  /// [Duration] animation duration on button
+  /// By default it is 500 ms
   final Duration animationDuration;
+
+  ///[double] width of button
+  ///by default it is double.infinity
   final double width;
+
+  ///[double] height of button
+  ///by default it is 50
   final double height;
+
+  /// Adds the onTap [VoidCallback] to the animated button.
   final VoidCallback onPress;
+
+  /// called this function when user press on button and pass value of button
+  /// [true] - button selected
+  /// [false] - button deSelected
+  final ValueChanged<bool> onChanges;
+
+  /// [TransitionType]  type of animation which apply to Button
+  /// by Default it is TransitionType.LEFT_TO_RIGHT
   final TransitionType transitionType;
+
+  /// [bool] this value will be [true] when user used [AnimatedButton] widget
+  /// [false] when user used [AnimatedButton.strip] widget
+  /// user can change this value
+  final bool isStrip;
+
+  ///[Color] color of strip which used in [AnimatedButton.strip] widget
+  final Color stripColor;
+
+  ///[double] size of strip it will use width when used [TransitionType.LEFT_TO_RIGHT]
+  ///or [TransitionType.RIGHT_TO_LEFT] animation and it will use height when used
+  /// [TransitionType.BOTTOM_TO_TOP] or [TransitionType.TOP_TO_BOTTOM]
+  final double stripSize;
 
   //button border
   final Color borderColor;
   final double borderWidth;
   final double borderRadius;
 
-  final bool isStrip;
-  final Color stripColor;
-  final double stripSize;
-
   const AnimatedButton(
       {Key key,
       @required this.text,
-      this.onPress,
+      @required this.onPress,
       this.transitionType = TransitionType.LEFT_TO_RIGHT,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
       this.selectedTextColor = Colors.blue,
       this.selectedBackgroundColor = Colors.white,
-      this.unSelectedBackgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white24,
       this.isReverse = false,
       this.textMaxLine,
       this.textOverflow,
       this.textAlignment = Alignment.center,
       this.height = 50,
       this.width = double.infinity,
-      this.borderColor = Colors.transparent,
-      this.borderRadius = 0,
-      this.borderWidth = 0,
-      this.animationDuration = const Duration(milliseconds: 500)})
+      this.animationDuration = const Duration(milliseconds: 500),
+      this.enable = true,
+      this.onChanges,
+        this.borderColor = Colors.transparent,
+        this.borderRadius = 0,
+        this.borderWidth = 0,})
       : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -67,9 +147,11 @@ class AnimatedButton extends StatefulWidget {
       this.textAlignment = Alignment.center,
       this.animationDuration = const Duration(milliseconds: 500),
       this.onPress,
-      this.unSelectedBackgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white24,
       this.stripColor = Colors.white,
-      this.stripSize = 6})
+      this.stripSize = 6,
+      this.enable = true,
+      this.onChanges})
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
@@ -88,7 +170,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   double slideBegin;
   double slideEnd;
 
-  // return animationController of check status and animation
+  /// [return] animationController of check status and animation
   AnimationController get animationController => _controller;
 
   @override
@@ -114,7 +196,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
-    // unselected/normal text
+    // deSelected/normal text
     var textNormal = Text(
       widget.text,
       maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
@@ -134,8 +216,9 @@ class _AnimatedButtonState extends State<AnimatedButton>
         Container(
           width: widget.width,
           height: widget.height,
+         // color: widget.backgroundColor,
           decoration: BoxDecoration(
-            color: widget.unSelectedBackgroundColor,
+            color: widget.backgroundColor,
             border: Border.all(
               color: widget.borderColor,
               width: widget.borderWidth,
@@ -202,10 +285,15 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   onButtonClick() {
-    if (widget.isReverse && _controller.isCompleted) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
+    if (widget.enable) {
+      if (widget.isReverse && _controller.isCompleted) {
+        _controller.reverse();
+        widget.onChanges(false);
+      } else {
+        _controller.forward();
+        widget.onChanges(true);
+      }
+      widget.onPress();
     }
   }
 }

@@ -2,15 +2,5 @@ enum TransitionType {
   LEFT_TO_RIGHT,
   RIGHT_TO_LEFT,
   TOP_TO_BOTTOM,
-  BOTTOM_TO_TOP,
-  CENTER_LR_IN,
-  CENTER_TB_IN,
-  CENTER_LR_OUT,
-  CENTER_TB_OUT
-}
-enum StripTransitionType {
-  LEFT_TO_RIGHT,
-  RIGHT_TO_LEFT,
-  TOP_TO_BOTTOM,
   BOTTOM_TO_TOP
 }

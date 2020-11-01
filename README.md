@@ -1,13 +1,32 @@
-# Flutter animated button
+# Flutter Animated Button :dizzy: :champagne:	 
 
-![Plugin example demo](assets/normal_1.gif)![Plugin example demo](assets/strip_1.gif)
+<div align="left">  
+   <a href="https://flutter.io">  
+    <img src="https://img.shields.io/badge/plateform-flutter-orange"  
+      alt="Platform" />  
+  </a>  
+   <a href="https://pub.dartlang.org/packages/animated_text_kit">  
+    <img src="https://img.shields.io/pub/v/flutter_animated_button"  
+      alt="Pub Package" />  
+     
+   <a href="https://opensource.org/licenses/MIT">  
+    <img src="https://img.shields.io/badge/License-MIT-red.svg"  
+      alt="License: MIT" />  
+  </a>  
+   <a href="#">  
+    <img src="https://img.shields.io/github/languages/code-size/NikhilVadoliya/FlutterAnimatedButton"/>  
+  </a>  
+  
+   </a>  
+   <a href="#">  
+    <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
+  </a>  
+</div><br>  
+
+<img src="https://raw.githubusercontent.com/NikhilVadoliya/FlutterAnimatedButton/main/assets/banner.gif"/>
 
 
-
-A flutter package which contains a collection of some cool and awesome button animations.
-
-
-# Installing
+## Installing
 
 ### 1. Depend on it
 Add this to your package's `pubspec.yaml` file:
@@ -39,7 +58,10 @@ Now in your `Dart` code, you can use:
 
 ```dart
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+
 ```
+</br>
+</br>
 
 # Usage
 
@@ -49,7 +71,6 @@ You can override the `animationDuration` of animation of the button by setting i
  AnimatedButton(
                 width: 200,
                 text: 'SUBMIT',
-                isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.BOTTOM_TO_TOP,
                 textStyle: TextStyle(
@@ -57,9 +78,14 @@ You can override the `animationDuration` of animation of the button by setting i
                     letterSpacing: 5,
                     color: Colors.white,
                     fontWeight: FontWeight.w300),
+              )
 ```
 
-# Available **Animations**
+</br>
+</br>
+
+
+# Available **Animations** 	:dizzy:	
 
 ## AnimatedButton
 
@@ -99,6 +125,7 @@ You can override the `animationDuration` of animation of the button by setting i
 ```
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/rounder_2_min.gif?raw=true" align = "left" height = "265px" width= "430px">
 
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "right" height = "275px" width= "430px">
 ```dart
     AnimatedButton(
               height: 70,
@@ -137,6 +164,10 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
+# Available **Animations** Types :sparkles:	
+</br>
+</br>
+
 
 # Available **Animations** Types
 
@@ -152,12 +183,15 @@ You can override the `animationDuration` of animation of the button by setting i
  - TOP_TO_BOTTOM
  - BOTTOM_TO_TOP
  
+ </br>
+</br>
 
-# Bugs or Requests
+
+# Bugs or Requests :bug:	
 
 If you encounter any problems feel free to open an [issue](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=feature_request.md) on GitHub and I'll look into it. Pull request are also welcome.
 
-License
+License :closed_lock_with_key:	
 ----
 
 MIT License

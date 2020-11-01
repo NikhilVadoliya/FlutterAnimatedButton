@@ -55,14 +55,33 @@ class AnimatedButtonDemo extends StatelessWidget {
               borderRadius: 0,
               borderWidth: 2,
             ),
-            AnimatedButton(
-              height: 70,
-              width: 200,
-              text: 'SUBMIT',
-              isReverse: true,
-              selectedTextColor: Colors.black,
-              transitionType: TransitionType.LEFT_TO_RIGHT,
-              textStyle: submitTextStyle,
+
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+                width: 200,
+                height: 70,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.LEFT_TO_RIGHT,
+                selectedBackgroundColor: Colors.white,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+                width: 200,
+                height: 70,
+                text: 'SUBMIT',
+                isReverse: true,
+                selectedTextColor: Colors.black,
+                transitionType: TransitionType.RIGHT_TO_LEFT,
+                selectedBackgroundColor: Colors.white,
+                textStyle: submitTextStyle),
+            SizedBox(
+              height: 50,
             ),
           ],
         ),
