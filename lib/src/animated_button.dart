@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/helper/strip_align.dart';
-import 'package:flutter_animated_button/helper/transition_type.dart';
-import 'package:flutter_animated_button/rect_clipper.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:flutter_animated_button/src/rect_clipper.dart';
 
 class AnimatedButton extends StatefulWidget {
   final String text;
