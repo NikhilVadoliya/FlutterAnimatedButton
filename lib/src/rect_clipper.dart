@@ -38,25 +38,44 @@ class RectClipper extends CustomClipper<Path> {
 
         break;
       case TransitionType.CENTER_LR_IN:
+        path.moveTo(size.width / 2 * clipFactor, 0);
+        path.lineTo(0, 0);
+        path.lineTo(0, size.height);
+        path.lineTo(size.width, size.height);
+        path.lineTo(size.width, 0);
+        path.lineTo(size.width - (size.width / 2 * clipFactor), 0);
+        path.lineTo(size.width - (size.width / 2 * clipFactor), size.height);
+        path.lineTo(size.width / 2 * clipFactor, size.height);
+
         break;
       case TransitionType.CENTER_TB_IN:
-        // TODO: Handle this case.
+        path.moveTo(0, size.height / 2 * clipFactor);
+        path.lineTo(0, 0);
+        path.lineTo(size.width, 0);
+        path.lineTo(size.width, size.height / 2 * clipFactor);
+        path.lineTo(0, size.height / 2 * clipFactor);
+        path.lineTo(0, size.height);
+        path.lineTo(size.width, size.height);
+        path.lineTo(size.width, size.height - (size.height / 2 * clipFactor));
+        path.lineTo(0, size.height - (size.height / 2 * clipFactor));
         break;
       case TransitionType.CENTER_LR_OUT:
         var halfWidth = size.width / 2;
+        var clipFactorWidth = halfWidth * clipFactor;
         path.moveTo(halfWidth, 0.0);
-        path.lineTo(halfWidth - (halfWidth * clipFactor), 0);
-        path.lineTo(halfWidth - (halfWidth * clipFactor), size.height);
-        path.lineTo(halfWidth + (halfWidth * clipFactor), size.height);
-        path.lineTo(halfWidth + (halfWidth * clipFactor), 0);
+        path.lineTo(halfWidth - clipFactorWidth, 0);
+        path.lineTo(halfWidth - clipFactorWidth, size.height);
+        path.lineTo(halfWidth + clipFactorWidth, size.height);
+        path.lineTo(halfWidth + clipFactorWidth, 0);
         break;
       case TransitionType.CENTER_TB_OUT:
         var halfHeight = size.height / 2;
+        var clipFactorHeight = halfHeight * clipFactor;
         path.moveTo(0.0, halfHeight);
-        path.lineTo(0, halfHeight - (halfHeight * clipFactor));
-        path.lineTo(size.width, halfHeight - (halfHeight * clipFactor));
-        path.lineTo(size.width, halfHeight + (halfHeight * clipFactor));
-        path.lineTo(0.0, halfHeight + (halfHeight * clipFactor));
+        path.lineTo(0, halfHeight - clipFactorHeight);
+        path.lineTo(size.width, halfHeight - clipFactorHeight);
+        path.lineTo(size.width, halfHeight + clipFactorHeight);
+        path.lineTo(0.0, halfHeight + clipFactorHeight);
         break;
     }
     path.close();
