@@ -51,7 +51,12 @@ class RectClipper extends CustomClipper<Path> {
         path.lineTo(halfWidth + (halfWidth * clipFactor), 0);
         break;
       case TransitionType.CENTER_TB_OUT:
-        // TODO: Handle this case.
+        var halfHeight = size.height / 2;
+        path.moveTo(0.0, halfHeight);
+        path.lineTo(0, halfHeight - (halfHeight * clipFactor));
+        path.lineTo(size.width, halfHeight - (halfHeight * clipFactor));
+        path.lineTo(size.width, halfHeight + (halfHeight * clipFactor));
+        path.lineTo(0.0, halfHeight + (halfHeight * clipFactor));
         break;
     }
     path.close();
