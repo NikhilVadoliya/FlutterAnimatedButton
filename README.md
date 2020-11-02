@@ -28,7 +28,7 @@
 
 ## Installing
 
-### 1. Depend on it
+###  Depend on it
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
@@ -36,30 +36,6 @@ dependencies:
   flutter_animated_button: <latest_version>
 ```
 
-### 2. Install it
-
-You can install packages from the command line:
-
-with `pub`:
-
-```css
-$ pub get
-```
-
-with `Flutter`:
-
-```css
-$ flutter packages get
-```
-
-### 3. Import it
-
-Now in your `Dart` code, you can use:
-
-```dart
-import 'package:flutter_animated_button/flutter_animated_button.dart';
-
-```
 </br>
 </br>
 
@@ -169,13 +145,16 @@ You can override the `animationDuration` of animation of the button by setting i
 
 # Available **Animations** Types :sparkles:	
 </br>
-</br>
 
 #### AnimatedButton
  - LEFT_TO_RIGHT
  - RIGHT_TO_LEFT
  - TOP_TO_BOTTOM
  - BOTTOM_TO_TOP
+ - CENTER_LR_IN
+ - CENTER_TB_IN
+ - CENTER_LR_OUT
+ - CENTER_TB_OUT
  
 #### AnimatedButton.strip
  - LEFT_TO_RIGHT
@@ -190,6 +169,8 @@ You can override the `animationDuration` of animation of the button by setting i
 # Bugs or Requests :bug:	
 
 If you encounter any problems feel free to open an [issue](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=feature_request.md) on GitHub and I'll look into it. Pull request are also welcome.
+
+</br>
 
 License :closed_lock_with_key:	
 ----
