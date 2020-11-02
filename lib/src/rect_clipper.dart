@@ -37,6 +37,22 @@ class RectClipper extends CustomClipper<Path> {
         path.lineTo(size.width, size.height);
 
         break;
+      case TransitionType.CENTER_LR_IN:
+        break;
+      case TransitionType.CENTER_TB_IN:
+        // TODO: Handle this case.
+        break;
+      case TransitionType.CENTER_LR_OUT:
+        var halfWidth = size.width / 2;
+        path.moveTo(halfWidth, 0.0);
+        path.lineTo(halfWidth - (halfWidth * clipFactor), 0);
+        path.lineTo(halfWidth - (halfWidth * clipFactor), size.height);
+        path.lineTo(halfWidth + (halfWidth * clipFactor), size.height);
+        path.lineTo(halfWidth + (halfWidth * clipFactor), 0);
+        break;
+      case TransitionType.CENTER_TB_OUT:
+        // TODO: Handle this case.
+        break;
     }
     path.close();
     return path;
@@ -45,6 +61,7 @@ class RectClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 }
+
 class RectStripClipper extends CustomClipper<Path> {
   final double clipFactor;
   final StripTransitionType transitionType;
