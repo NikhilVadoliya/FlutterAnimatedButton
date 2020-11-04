@@ -111,6 +111,10 @@ class AnimatedButton extends StatefulWidget {
   final double borderWidth;
   final double borderRadius;
 
+  final Gradient gradient;
+  final Gradient selectedGradientColor;
+
+
   const AnimatedButton({
     Key key,
     @required this.text,
@@ -131,7 +135,7 @@ class AnimatedButton extends StatefulWidget {
     this.onChanges,
     this.borderColor = Colors.transparent,
     this.borderRadius = 0,
-    this.borderWidth = 0,
+    this.borderWidth = 0, this.gradient, this.selectedGradientColor,
   })  : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -158,7 +162,7 @@ class AnimatedButton extends StatefulWidget {
       this.stripColor = Colors.white,
       this.stripSize = 6,
       this.enable = true,
-      this.onChanges})
+      this.onChanges, this.gradient, this.selectedGradientColor})
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
@@ -207,8 +211,9 @@ class _AnimatedButtonState extends State<AnimatedButton>
         slideEnd = 1.0;
       }
     }
-    slideAnimation =
-        Tween(begin: slideBegin, end: slideEnd).animate(_controller);
+    final Animation curve =
+        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
+    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(curve);
   }
 
   @override
@@ -236,6 +241,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
           height: widget.height,
           // color: widget.backgroundColor,
           decoration: BoxDecoration(
+            gradient: widget?.gradient,
             color: widget.backgroundColor,
             border: Border.all(
               color: widget.borderColor,
@@ -267,6 +273,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
               width: widget.width,
               height: widget.height,
               decoration: BoxDecoration(
+                gradient: widget?.selectedGradientColor,
                 color: widget.selectedBackgroundColor,
                 border: Border.all(
                   color: Colors.white,
