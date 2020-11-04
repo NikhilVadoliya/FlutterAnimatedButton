@@ -114,7 +114,6 @@ class AnimatedButton extends StatefulWidget {
   final Gradient gradient;
   final Gradient selectedGradientColor;
 
-
   const AnimatedButton({
     Key key,
     @required this.text,
@@ -135,7 +134,9 @@ class AnimatedButton extends StatefulWidget {
     this.onChanges,
     this.borderColor = Colors.transparent,
     this.borderRadius = 0,
-    this.borderWidth = 0, this.gradient, this.selectedGradientColor,
+    this.borderWidth = 0,
+    this.gradient,
+    this.selectedGradientColor,
   })  : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -162,7 +163,9 @@ class AnimatedButton extends StatefulWidget {
       this.stripColor = Colors.white,
       this.stripSize = 6,
       this.enable = true,
-      this.onChanges, this.gradient, this.selectedGradientColor})
+      this.onChanges,
+      this.gradient,
+      this.selectedGradientColor})
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
@@ -276,7 +279,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 gradient: widget?.selectedGradientColor,
                 color: widget.selectedBackgroundColor,
                 border: Border.all(
-                  color: Colors.white,
+                  color: widget.borderColor,
                   width: widget.borderWidth,
                 ),
                 borderRadius: BorderRadius.circular(widget.borderRadius),
