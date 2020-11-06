@@ -106,12 +106,21 @@ class AnimatedButton extends StatefulWidget {
   /// [TransitionType.BOTTOM_TO_TOP] or [TransitionType.TOP_TO_BOTTOM]
   final double stripSize;
 
-  //button border
+  ///[Color] color of the border by Default it is [Colors.transparent]
   final Color borderColor;
+
+  /// [double] width of the border by Default it is 0
   final double borderWidth;
+
+  ///[double] radius of the border bt Default it is 0
   final double borderRadius;
 
+  ///[gradient], which also fills the button
+  /// * If [gradient] is null, this decoration does not paint gradients.
   final Gradient gradient;
+
+  ///[selectedGradientColor], which also fills the  selected button
+  /// * If [selectedGradientColor] is null, this decoration does not paint gradients.
   final Gradient selectedGradientColor;
 
   const AnimatedButton({
@@ -122,7 +131,7 @@ class AnimatedButton extends StatefulWidget {
     this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
     this.selectedTextColor = Colors.blue,
     this.selectedBackgroundColor = Colors.white,
-    this.backgroundColor = Colors.white24,
+    this.backgroundColor = Colors.white60,
     this.isReverse = false,
     this.textMaxLine,
     this.textOverflow,
@@ -159,7 +168,7 @@ class AnimatedButton extends StatefulWidget {
       this.textOverflow,
       this.textAlignment = Alignment.center,
       this.animationDuration = const Duration(milliseconds: 500),
-      this.backgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white60,
       this.stripColor = Colors.white,
       this.stripSize = 6,
       this.enable = true,
@@ -242,7 +251,6 @@ class _AnimatedButtonState extends State<AnimatedButton>
         Container(
           width: widget.width,
           height: widget.height,
-          // color: widget.backgroundColor,
           decoration: BoxDecoration(
             gradient: widget?.gradient,
             color: widget.backgroundColor,
