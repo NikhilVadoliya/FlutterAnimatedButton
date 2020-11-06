@@ -215,7 +215,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       }
     }
     final Animation curve =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
     slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(curve);
   }
 
@@ -319,12 +319,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
     if (widget.enable) {
       if (widget.isReverse && _controller.isCompleted) {
         _controller.reverse();
-        widget.onChanges(false);
+        widget.onChanges?.call(false);
       } else {
         _controller.forward();
-        widget.onChanges(true);
+        widget?.onChanges?.call(true);
       }
-      widget.onPress();
+      widget.onPress?.call();
     }
   }
 }
