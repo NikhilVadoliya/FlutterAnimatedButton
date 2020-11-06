@@ -36,6 +36,15 @@ dependencies:
   flutter_animated_button: <latest_version>
 ```
 
+### Import it
+
+Now in your `Dart` code, you can use:
+
+```dart
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+
+```
+
 </br>
 </br>
 
