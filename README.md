@@ -1,11 +1,11 @@
-# Flutter Animated Button :dizzy: :champagne:	 
+# flutter_animated_button :dizzy: :champagne:	 
 
 <div align="left">  
    <a href="https://flutter.io">  
     <img src="https://img.shields.io/badge/plateform-flutter-orange"  
       alt="Platform" />  
   </a>  
-   <a href="https://pub.dartlang.org/packages/animated_text_kit">  
+   <a href="https://pub.dev/packages/flutter_animated_button">  
     <img src="https://img.shields.io/pub/v/flutter_animated_button"  
       alt="Pub Package" />  
      
