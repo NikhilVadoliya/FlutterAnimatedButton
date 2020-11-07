@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/src/rect_clipper.dart';
 import 'package:flutter_animated_button/src/transition_type.dart';
