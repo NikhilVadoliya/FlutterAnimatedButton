@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/src/rect_clipper.dart';
 import 'package:flutter_animated_button/src/transition_type.dart';
@@ -87,6 +89,10 @@ class AnimatedButton extends StatefulWidget {
   /// by Default it is TransitionType.LEFT_TO_RIGHT
   final TransitionType transitionType;
 
+  /// [StripTransitionType]  type of animation which apply to Strip Button
+  /// by Default it is TransitionType.LEFT_TO_RIGHT
+  final StripTransitionType stripTransitionType;
+
   /// [bool] this value will be [true] when user used [AnimatedButton] widget
   /// [false] when user used [AnimatedButton.strip] widget
   /// user can change this value
@@ -100,37 +106,61 @@ class AnimatedButton extends StatefulWidget {
   /// [TransitionType.BOTTOM_TO_TOP] or [TransitionType.TOP_TO_BOTTOM]
   final double stripSize;
 
-  const AnimatedButton(
-      {Key key,
-      @required this.text,
-      @required this.onPress,
-      this.transitionType = TransitionType.LEFT_TO_RIGHT,
-      this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
-      this.selectedTextColor = Colors.blue,
-      this.selectedBackgroundColor = Colors.white,
-      this.backgroundColor = Colors.white24,
-      this.isReverse = false,
-      this.textMaxLine,
-      this.textOverflow,
-      this.textAlignment = Alignment.center,
-      this.height = 50,
-      this.width = double.infinity,
-      this.animationDuration = const Duration(milliseconds: 500),
-      this.enable = true,
-      this.onChanges})
-      : assert(text != null),
+  ///[Color] color of the border by Default it is [Colors.transparent]
+  final Color borderColor;
+
+  /// [double] width of the border by Default it is 0
+  final double borderWidth;
+
+  ///[double] radius of the border bt Default it is 0
+  final double borderRadius;
+
+  ///[gradient], which also fills the button
+  /// * If [gradient] is null, this decoration does not paint gradients.
+  final Gradient gradient;
+
+  ///[selectedGradientColor], which also fills the  selected button
+  /// * If [selectedGradientColor] is null, this decoration does not paint gradients.
+  final Gradient selectedGradientColor;
+
+  const AnimatedButton({
+    Key key,
+    @required this.text,
+    @required this.onPress,
+    this.transitionType = TransitionType.LEFT_TO_RIGHT,
+    this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
+    this.selectedTextColor = Colors.blue,
+    this.selectedBackgroundColor = Colors.white,
+    this.backgroundColor = Colors.white60,
+    this.isReverse = false,
+    this.textMaxLine,
+    this.textOverflow,
+    this.textAlignment = Alignment.center,
+    this.height = 50,
+    this.width = double.infinity,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.enable = true,
+    this.onChanges,
+    this.borderColor = Colors.transparent,
+    this.borderRadius = 0,
+    this.borderWidth = 0,
+    this.gradient,
+    this.selectedGradientColor,
+  })  : assert(text != null),
         isStrip = false,
         stripColor = null,
         stripSize = null,
+        stripTransitionType = null,
         super(key: key);
 
   AnimatedButton.strip(
       {Key key,
-      this.text,
+      @required this.text,
+      @required this.onPress,
       this.isReverse = false,
       this.height = 50,
       this.width = double.infinity,
-      this.transitionType = TransitionType.LEFT_TO_RIGHT,
+      this.stripTransitionType = StripTransitionType.LEFT_TO_RIGHT,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
       this.selectedTextColor = Colors.blue,
       this.selectedBackgroundColor = Colors.white,
@@ -138,13 +168,18 @@ class AnimatedButton extends StatefulWidget {
       this.textOverflow,
       this.textAlignment = Alignment.center,
       this.animationDuration = const Duration(milliseconds: 500),
-      this.onPress,
-      this.backgroundColor = Colors.white24,
+      this.backgroundColor = Colors.white60,
       this.stripColor = Colors.white,
       this.stripSize = 6,
       this.enable = true,
-      this.onChanges})
+      this.onChanges,
+      this.gradient,
+      this.selectedGradientColor})
       : assert(text != null),
+        borderRadius = 0,
+        borderWidth = 0,
+        borderColor = Colors.transparent,
+        transitionType = null,
         isStrip = true;
 
   @override
@@ -169,17 +204,28 @@ class _AnimatedButtonState extends State<AnimatedButton>
       duration: widget.animationDuration,
       vsync: this,
     );
-
-    if (widget.transitionType == TransitionType.RIGHT_TO_LEFT ||
-        widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
-      slideBegin = 1.0;
-      slideEnd = 0.0;
+    if (widget.isStrip) {
+      if (widget.stripTransitionType == StripTransitionType.RIGHT_TO_LEFT ||
+          widget.stripTransitionType == StripTransitionType.BOTTOM_TO_TOP) {
+        slideBegin = 1.0;
+        slideEnd = 0.0;
+      } else {
+        slideBegin = 0.0;
+        slideEnd = 1.0;
+      }
     } else {
-      slideBegin = 0.0;
-      slideEnd = 1.0;
+      if (widget.transitionType == TransitionType.RIGHT_TO_LEFT ||
+          widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
+        slideBegin = 1.0;
+        slideEnd = 0.0;
+      } else {
+        slideBegin = 0.0;
+        slideEnd = 1.0;
+      }
     }
-    slideAnimation =
-        Tween(begin: slideBegin, end: slideEnd).animate(_controller);
+    final Animation curve =
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
+    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(curve);
   }
 
   @override
@@ -205,10 +251,18 @@ class _AnimatedButtonState extends State<AnimatedButton>
         Container(
           width: widget.width,
           height: widget.height,
-          color: widget.backgroundColor,
+          decoration: BoxDecoration(
+            gradient: widget?.gradient,
+            color: widget.backgroundColor,
+            border: Border.all(
+              color: widget.borderColor,
+              width: widget.borderWidth,
+            ),
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
           child: widget.isStrip
               ? StripAnimated(
-                  stripAlign: widget.transitionType,
+                  animationType: widget.stripTransitionType,
                   stripColor: widget.stripColor,
                   stripSize: widget.stripSize,
                   text: textNormal,
@@ -216,6 +270,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                   textAlignment: widget.textAlignment,
                 )
               : InkWell(
+                  borderRadius: BorderRadius.circular(widget.borderRadius),
                   onTap: () => onButtonClick(),
                   child: Align(
                     child: textNormal,
@@ -228,10 +283,18 @@ class _AnimatedButtonState extends State<AnimatedButton>
           child: Container(
               width: widget.width,
               height: widget.height,
-              color: widget.selectedBackgroundColor,
+              decoration: BoxDecoration(
+                gradient: widget?.selectedGradientColor,
+                color: widget.selectedBackgroundColor,
+                border: Border.all(
+                  color: widget.borderColor,
+                  width: widget.borderWidth,
+                ),
+                borderRadius: BorderRadius.circular(widget.borderRadius),
+              ),
               child: widget.isStrip
                   ? StripAnimated(
-                      stripAlign: widget.transitionType,
+                      animationType: widget.stripTransitionType,
                       stripColor: widget.stripColor,
                       stripSize: widget.stripSize,
                       text: textSelected,
@@ -239,6 +302,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                       textAlignment: widget.textAlignment,
                     )
                   : InkWell(
+                      borderRadius: BorderRadius.circular(widget.borderRadius),
                       onTap: () => onButtonClick(),
                       child: Align(
                         child: textSelected,
@@ -247,7 +311,10 @@ class _AnimatedButtonState extends State<AnimatedButton>
                     )),
           builder: (context, child) {
             return ClipPath(
-              clipper: RectClipper(slideAnimation.value, widget.transitionType),
+              clipper: widget.isStrip
+                  ? RectStripClipper(
+                      slideAnimation.value, widget.stripTransitionType)
+                  : RectClipper(slideAnimation.value, widget.transitionType),
               child: child,
             );
           },
@@ -260,18 +327,18 @@ class _AnimatedButtonState extends State<AnimatedButton>
     if (widget.enable) {
       if (widget.isReverse && _controller.isCompleted) {
         _controller.reverse();
-        widget.onChanges(false);
+        widget.onChanges?.call(false);
       } else {
         _controller.forward();
-        widget.onChanges(true);
+        widget?.onChanges?.call(true);
       }
-      widget.onPress();
+      widget.onPress?.call();
     }
   }
 }
 
 class StripAnimated extends StatelessWidget {
-  final TransitionType stripAlign;
+  final StripTransitionType animationType;
   final Color stripColor;
   final double stripSize;
   final Text text;
@@ -280,7 +347,7 @@ class StripAnimated extends StatelessWidget {
 
   const StripAnimated(
       {Key key,
-      this.stripAlign,
+      this.animationType,
       this.stripColor,
       this.stripSize,
       this.text,
@@ -290,11 +357,11 @@ class StripAnimated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (stripAlign == TransitionType.BOTTOM_TO_TOP ||
-        stripAlign == TransitionType.TOP_TO_BOTTOM) {
+    if (animationType == StripTransitionType.BOTTOM_TO_TOP ||
+        animationType == StripTransitionType.TOP_TO_BOTTOM) {
       return Column(
         children: [
-          if (stripAlign == TransitionType.TOP_TO_BOTTOM)
+          if (animationType == StripTransitionType.TOP_TO_BOTTOM)
             Container(
               width: double.infinity,
               height: stripSize,
@@ -305,10 +372,10 @@ class StripAnimated extends StatelessWidget {
               onTap: () => onTap(),
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: stripAlign == TransitionType.TOP_TO_BOTTOM
+                    top: animationType == StripTransitionType.TOP_TO_BOTTOM
                         ? 0
                         : stripSize,
-                    bottom: stripAlign == TransitionType.BOTTOM_TO_TOP
+                    bottom: animationType == StripTransitionType.BOTTOM_TO_TOP
                         ? 0
                         : stripSize),
                 child: Align(
@@ -318,7 +385,7 @@ class StripAnimated extends StatelessWidget {
               ),
             ),
           ),
-          if (stripAlign == TransitionType.BOTTOM_TO_TOP)
+          if (animationType == StripTransitionType.BOTTOM_TO_TOP)
             Container(
               width: double.infinity,
               height: stripSize,
@@ -330,7 +397,7 @@ class StripAnimated extends StatelessWidget {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (stripAlign == TransitionType.LEFT_TO_RIGHT)
+          if (animationType == StripTransitionType.LEFT_TO_RIGHT)
             Container(
               width: stripSize,
               height: double.infinity,
@@ -345,7 +412,7 @@ class StripAnimated extends StatelessWidget {
               ),
             ),
           ),
-          if (stripAlign == TransitionType.RIGHT_TO_LEFT)
+          if (animationType == StripTransitionType.RIGHT_TO_LEFT)
             Container(
               width: stripSize,
               height: double.infinity,

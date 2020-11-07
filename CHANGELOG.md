@@ -1,3 +1,12 @@
+## [1.0.0]   07-Nov-2020  :rocket:
+
+* Bug fixed
+* Add button border feature (```borderColor```,```borderWidth```,```borderRadius```)
+* Add 4 new animation (```CENTER_LR_IN```, ```CENTER_LR_OUT```, ```CENTER_TB_IN```, ```CENTER_TB_OUT```)
+* Add gradient background support 
+* Impement smooth animation
+
+
 ## [0.2.1]   01-Nov-2020  :rocket:
 
 * Bug fixed

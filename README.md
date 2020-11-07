@@ -1,4 +1,4 @@
-# Flutter Animated Button :dizzy: :champagne:	 
+# flutter_animated_button :dizzy: :champagne:	 
 
 <div align="left">  
    <a href="https://flutter.io">  
@@ -18,17 +18,18 @@
   </a>  
   
    </a>  
+ 
    <a href="#">  
-    <img src="https://hits.dwyl.com/NikhilVadoliya/FlutterAnimatedButton.svg"/>  
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FNikhilVadoliya%2FFlutterAnimatedButton&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visit&edge_flat=false"/>  
   </a>  
 </div><br>  
 
-<img src="https://raw.githubusercontent.com/NikhilVadoliya/FlutterAnimatedButton/main/assets/banner.gif"/>
+<img src="https://raw.githubusercontent.com/NikhilVadoliya/FlutterAnimatedButton/dev/assets/banner_1.0.0_2.gif"/>
 
 
 ## Installing
 
-### 1. Depend on it
+###  Depend on it
 Add this to your package's `pubspec.yaml` file:
 
 ```yaml
@@ -36,23 +37,7 @@ dependencies:
   flutter_animated_button: <latest_version>
 ```
 
-### 2. Install it
-
-You can install packages from the command line:
-
-with `pub`:
-
-```css
-$ pub get
-```
-
-with `Flutter`:
-
-```css
-$ flutter packages get
-```
-
-### 3. Import it
+### Import it
 
 Now in your `Dart` code, you can use:
 
@@ -60,12 +45,13 @@ Now in your `Dart` code, you can use:
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 ```
+
 </br>
 </br>
 
 # Usage
 
-You can override the `animationDuration` of animation of the button by setting its duration in each AnimatedButton class, also you can get `animationController` for animation status and animation value during the animation. You can change text style, selected  textColor and background color of button by `textStyle`,`selectedTextColor`,`unSelectedBackgroundColor` and `selectedBackgroundColor`. If you want revert animation when button already select then you can do it by `isReverse` property.
+You can override the `animationDuration` of animation of the button by setting its duration in each AnimatedButton class, also you can get `animationController` for animation status and animation value during the animation. You can change text style, selected  textColor and background color of button by `textStyle`,`selectedTextColor`,`backgroundColor` and `selectedBackgroundColor`. If you want revert animation when button already select then you can do it by `isReverse` property.
 
 ```dart
  AnimatedButton(
@@ -87,9 +73,9 @@ You can override the `animationDuration` of animation of the button by setting i
 
 # Available **Animations** 	:dizzy:	
 
-#### AnimatedButton
+## AnimatedButton
 
-<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "right" height = "265px" width= "430px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/normal_1_min.gif?raw=true" align = "left" height = "265px" width= "430px">
 
 ```dart
   AnimatedButton(
@@ -106,10 +92,46 @@ You can override the `animationDuration` of animation of the button by setting i
                   fontWeight: FontWeight.w300),
             ),
 ```
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/border-1-min.gif?raw=true" align = "left" height = "265px" width= "430px">
 
-#### AnimatedButton.strip
+```dart
+  AnimatedButton(
+             height: 70,
+             width: 200,
+             text: 'SUBMIT',
+             isReverse: true,
+             selectedTextColor: Colors.black,
+             transitionType: TransitionType.LEFT_TO_RIGHT,
+             textStyle: submitTextStyle,
+             unSelectedBackgroundColor: Colors.black,
+             borderColor: Colors.white,
+             borderRadius: 0,
+             borderWidth: 2,
+           ),
+```
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/rounder_2_min.gif?raw=true" align = "left" height = "265px" width= "430px">
 
-<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "right" height = "275px" width= "430px">
+```dart
+    AnimatedButton(
+              height: 70,
+              width: 200,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              transitionType: TransitionType.LEFT_TO_RIGHT,
+              textStyle: submitTextStyle,
+              unSelectedBackgroundColor: Colors.black,
+              borderColor: Colors.white,
+              borderRadius: 50,
+              borderWidth: 2,
+            ),
+```
+
+</br>
+
+## AnimatedButton.strip
+
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/strip_1_min.gif?raw=true" align = "left" height = "275px" width= "430px">
 
 ```dart
   AnimatedButton.strip(
@@ -118,7 +140,7 @@ You can override the `animationDuration` of animation of the button by setting i
               text: 'SUBMIT',
               isReverse: true,
               selectedTextColor: Colors.black,
-              transitionType: TransitionType.LEFT_TO_RIGHT,
+              stripTransitionType: StripTransitionType.LEFT_TO_RIGHT,
               selectedBackgroundColor: Colors.white,
               textStyle: GoogleFonts.nunito(
                   fontSize: 28,
@@ -127,16 +149,22 @@ You can override the `animationDuration` of animation of the button by setting i
                   fontWeight: FontWeight.w300),
             ),
 ```
+
 </br>
 </br>
 
 # Available **Animations** Types :sparkles:	
+</br>
 
 #### AnimatedButton
  - LEFT_TO_RIGHT
  - RIGHT_TO_LEFT
  - TOP_TO_BOTTOM
  - BOTTOM_TO_TOP
+ - CENTER_LR_IN
+ - CENTER_TB_IN
+ - CENTER_LR_OUT
+ - CENTER_TB_OUT
  
 #### AnimatedButton.strip
  - LEFT_TO_RIGHT
@@ -151,6 +179,8 @@ You can override the `animationDuration` of animation of the button by setting i
 # Bugs or Requests :bug:	
 
 If you encounter any problems feel free to open an [issue](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=bug_report.md). If you feel the library is missing a feature, please raise a [ticket](https://github.com/NikhilVadoliya/FlutterAnimatedButton/issues/new?template=feature_request.md) on GitHub and I'll look into it. Pull request are also welcome.
+
+</br>
 
 License :closed_lock_with_key:	
 ----
