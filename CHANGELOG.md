@@ -1,3 +1,7 @@
+## [1.0.1]   07-Nov-2020  :rocket:
+
+* Add Web support
+
 ## [1.0.0]   07-Nov-2020  :rocket:
 
 * Bug fixed
