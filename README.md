@@ -51,7 +51,7 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 # Usage
 
-You can override the `animationDuration` of animation of the button by setting its duration in each AnimatedButton class, also you can get `animationController` for animation status and animation value during the animation. You can change text style, selected  textColor and background color of button by `textStyle`,`selectedTextColor`,`unSelectedBackgroundColor` and `selectedBackgroundColor`. If you want revert animation when button already select then you can do it by `isReverse` property.
+You can override the `animationDuration` of animation of the button by setting its duration in each AnimatedButton class, also you can get `animationController` for animation status and animation value during the animation. You can change text style, selected  textColor and background color of button by `textStyle`,`selectedTextColor`,`backgroundColor` and `selectedBackgroundColor`. If you want revert animation when button already select then you can do it by `isReverse` property.
 
 ```dart
  AnimatedButton(
@@ -140,7 +140,7 @@ You can override the `animationDuration` of animation of the button by setting i
               text: 'SUBMIT',
               isReverse: true,
               selectedTextColor: Colors.black,
-              transitionType: TransitionType.LEFT_TO_RIGHT,
+              stripTransitionType: StripTransitionType.LEFT_TO_RIGHT,
               selectedBackgroundColor: Colors.white,
               textStyle: GoogleFonts.nunito(
                   fontSize: 28,
