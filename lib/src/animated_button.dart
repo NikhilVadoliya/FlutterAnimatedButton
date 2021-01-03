@@ -121,6 +121,11 @@ class AnimatedButton extends StatefulWidget {
   /// * If [selectedGradientColor] is null, this decoration does not paint gradients.
   final Gradient selectedGradientColor;
 
+  ///[isSelected] if this is true then button is selected
+  /// it's false then button is deselected;
+  /// default it is false
+  final bool isSelected;
+
   const AnimatedButton({
     Key key,
     @required this.text,
@@ -144,6 +149,7 @@ class AnimatedButton extends StatefulWidget {
     this.borderWidth = 0,
     this.gradient,
     this.selectedGradientColor,
+    this.isSelected = false,
   })  : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -172,7 +178,8 @@ class AnimatedButton extends StatefulWidget {
       this.enable = true,
       this.onChanges,
       this.gradient,
-      this.selectedGradientColor})
+      this.selectedGradientColor,
+      this.isSelected})
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
@@ -198,10 +205,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: widget.animationDuration,
-      vsync: this,
-    );
+    _controller =
+        AnimationController(duration: widget.animationDuration, vsync: this);
     if (widget.isStrip) {
       if (widget.stripTransitionType == StripTransitionType.RIGHT_TO_LEFT ||
           widget.stripTransitionType == StripTransitionType.BOTTOM_TO_TOP) {
@@ -224,6 +229,16 @@ class _AnimatedButtonState extends State<AnimatedButton>
     final Animation curve =
         CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
     slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(curve);
+
+    widget.isSelected ? _controller.forward() : _controller.reverse();
+  }
+
+  @override
+  void didUpdateWidget(covariant AnimatedButton oldWidget) {
+    if (oldWidget.isSelected != widget.isSelected) {
+      widget.isSelected ? _controller.forward() : _controller.reverse();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
