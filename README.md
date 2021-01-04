@@ -62,7 +62,7 @@ You can override the `animationDuration` of animation of the button by setting i
                 textStyle: TextStyle(
                     fontSize: 28,
                     letterSpacing: 5,
-                    color: Colors.white,
+                    color: Colors.deepOrange,
                     fontWeight: FontWeight.w300),
               )
 ```
