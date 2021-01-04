@@ -1,3 +1,7 @@
+## [1.0.2]   04-Jan-2021  :rocket:
+
+* added ```isSelected``` parameter for select/deselect animated button
+
 ## [1.0.1]   07-Nov-2020  :rocket:
 
 * Add Web support
