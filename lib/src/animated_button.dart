@@ -179,7 +179,7 @@ class AnimatedButton extends StatefulWidget {
       this.onChanges,
       this.gradient,
       this.selectedGradientColor,
-      this.isSelected})
+      this.isSelected = false})
       : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
