@@ -70,6 +70,12 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
+# Used in APP
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/demo_1.gif?raw=true" height = "500px" width= "250px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/demo_2.gif?raw=true" height = "500px" width= "250px">
+
+</br>
+</br>
 
 # Available **Animations** 	:dizzy:	
 
