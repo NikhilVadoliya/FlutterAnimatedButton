@@ -77,6 +77,69 @@ class RectClipper extends CustomClipper<Path> {
         path.lineTo(size.width, halfHeight + clipFactorHeight);
         path.lineTo(0.0, halfHeight + clipFactorHeight);
         break;
+      case TransitionType.LEFT_TOP_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, 0),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.LEFT_BOTTOM_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, size.height),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.LEFT_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, size.height / 2),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.RIGHT_BOTTOM_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, size.height),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.RIGHT_TOP_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, 0),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.RIGHT_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, size.height / 2),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.TOP_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, 0),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.BOTTOM_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, size.height),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
+      case TransitionType.CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, size.height / 2),
+            radius: clipFactor > 0.9
+                ? size.width * clipFactor + 10
+                : size.width * clipFactor));
+        break;
     }
     path.close();
     return path;
