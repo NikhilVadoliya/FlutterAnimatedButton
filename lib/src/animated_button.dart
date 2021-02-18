@@ -4,6 +4,7 @@ import 'package:flutter_animated_button/src/transition_type.dart';
 
 class AnimatedButton extends StatefulWidget {
   /// [String] text of button
+  ///
   final String text;
 
   /// [TextStyle] textStyle of button's text
@@ -15,6 +16,9 @@ class AnimatedButton extends StatefulWidget {
   /// [Color] button background colour which displaying
   /// when the user press on button / select it
   final Color selectedBackgroundColor;
+
+  ///[String] text of button which display when button is selected
+  final String selectedText;
 
   ///[Color] button background colour which displaying when
   ///the user deselect button
@@ -150,6 +154,7 @@ class AnimatedButton extends StatefulWidget {
     this.gradient,
     this.selectedGradientColor,
     this.isSelected = false,
+    this.selectedText = '',
   })  : assert(text != null),
         isStrip = false,
         stripColor = null,
@@ -157,30 +162,31 @@ class AnimatedButton extends StatefulWidget {
         stripTransitionType = null,
         super(key: key);
 
-  AnimatedButton.strip(
-      {Key key,
-      @required this.text,
-      @required this.onPress,
-      this.isReverse = false,
-      this.height = 50,
-      this.width = double.infinity,
-      this.stripTransitionType = StripTransitionType.LEFT_TO_RIGHT,
-      this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
-      this.selectedTextColor = Colors.blue,
-      this.selectedBackgroundColor = Colors.white,
-      this.textMaxLine,
-      this.textOverflow,
-      this.textAlignment = Alignment.center,
-      this.animationDuration = const Duration(milliseconds: 500),
-      this.backgroundColor = Colors.white60,
-      this.stripColor = Colors.white,
-      this.stripSize = 6,
-      this.enable = true,
-      this.onChanges,
-      this.gradient,
-      this.selectedGradientColor,
-      this.isSelected = false})
-      : assert(text != null),
+  AnimatedButton.strip({
+    Key key,
+    @required this.text,
+    @required this.onPress,
+    this.isReverse = false,
+    this.height = 50,
+    this.width = double.infinity,
+    this.stripTransitionType = StripTransitionType.LEFT_TO_RIGHT,
+    this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
+    this.selectedTextColor = Colors.blue,
+    this.selectedBackgroundColor = Colors.white,
+    this.textMaxLine,
+    this.textOverflow,
+    this.textAlignment = Alignment.center,
+    this.animationDuration = const Duration(milliseconds: 500),
+    this.backgroundColor = Colors.white60,
+    this.stripColor = Colors.white,
+    this.stripSize = 6,
+    this.enable = true,
+    this.onChanges,
+    this.gradient,
+    this.selectedGradientColor,
+    this.isSelected = false,
+    this.selectedText = '',
+  })  : assert(text != null),
         borderRadius = 0,
         borderWidth = 0,
         borderColor = Colors.transparent,
@@ -253,7 +259,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     );
     // selected text
     var textSelected = Text(
-      widget.text,
+      widget.selectedText.isNotEmpty ? widget.selectedText : widget.text,
       maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
       overflow: widget.textOverflow ?? defaultTextStyle.overflow,
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
