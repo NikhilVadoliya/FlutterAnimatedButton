@@ -82,7 +82,7 @@ You can override the `animationDuration` of animation of the button by setting i
   
   </br>
   
-<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_1.gif?raw=true" height = "190px" width= "310px">. <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_2.gif?raw=true" height = "190px" width= "310px"> . <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_3.gif?raw=true" height = "190px" width= "310px">
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/new_1.gif?raw=true" height = "190px" width= "310px">. <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/new_2.gif?raw=true" height = "190px" width= "310px"> . <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/new_3.gif?raw=true" height = "190px" width= "310px">
 
 
 
