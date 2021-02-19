@@ -1,7 +1,7 @@
 
 ## [1.1.0]   19-Feb-2021  :rocket:
 
-* Added below animates
+* Added below animations
 1) LEFT_TOP_ROUNDER
 2) LEFT_CENTER_ROUNDER
 3) LEFT_BOTTOM_ROUNDER
