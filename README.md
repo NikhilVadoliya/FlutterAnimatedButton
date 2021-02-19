@@ -76,6 +76,16 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
+# Some **new** animation in latest version :zap:
+  * **Animations** : LEFT_TOP_ROUNDER, LEFT_BOTTOM_ROUNDER, BOTTOM_CENTER_ROUNDER, CENTER_ROUNDER...etc
+  * Selected button text support 
+  
+  </br>
+  
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_1.gif?raw=true" height = "150px" width= "250px">. <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_2.gif?raw=true" height = "150px" width= "250px"> . <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_3.gif?raw=true" height = "150px" width= "250px">
+
+
+
 # Available **Animations** 	:dizzy:	
 
 ## AnimatedButton
