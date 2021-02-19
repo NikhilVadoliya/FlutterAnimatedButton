@@ -61,7 +61,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                //      borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -78,7 +77,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-            //          borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -95,7 +93,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-          //            borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -112,7 +109,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-           //           borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -129,7 +125,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                 //     borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -146,7 +141,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                 //     borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -163,7 +157,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                 //     borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -180,7 +173,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                    //  borderRadius: 50,
                       borderWidth: 1,
                     ),
                     SizedBox(
@@ -197,7 +189,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                       textStyle: submitTextStyle,
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                      //borderRadius: 50,
                       borderWidth: 1,
                     ),
                   ],
@@ -309,54 +300,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                     SizedBox(
                       height: 50,
                     ),
-/*              AnimatedButton.strip(
-                  width: 200,
-                  height: 70,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  stripTransitionType: StripTransitionType.LEFT_TO_RIGHT,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  height: 70,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  stripTransitionType: StripTransitionType.RIGHT_TO_LEFT,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  height: 70,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  stripTransitionType: StripTransitionType.TOP_TO_BOTTOM,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),
-              AnimatedButton.strip(
-                  width: 200,
-                  height: 70,
-                  text: 'SUBMIT',
-                  isReverse: true,
-                  selectedTextColor: Colors.black,
-                  stripTransitionType: StripTransitionType.BOTTOM_TO_TOP,
-                  selectedBackgroundColor: Colors.white,
-                  textStyle: submitTextStyle),
-              SizedBox(
-                height: 50,
-              ),*/
                   ],
                 ),
         ),
