@@ -170,10 +170,13 @@ You can override the `animationDuration` of animation of the button by setting i
 | BOTTOM_TO_TOP | CENTER_TB_OUT | RIGHT_BOTTOM_ROUNDER | BOTTOM_CENTER_ROUNDER | -              |
  
 #### AnimatedButton.strip
- - LEFT_TO_RIGHT
- - RIGHT_TO_LEFT
- - TOP_TO_BOTTOM
- - BOTTOM_TO_TOP
+|               |              
+|---------------|
+| LEFT_TO_RIGHT |
+| RIGHT_TO_LEFT | 
+| TOP_TO_BOTTOM | 
+| BOTTOM_TO_TOP |
+
  
  </br>
 </br>
