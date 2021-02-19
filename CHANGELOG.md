@@ -12,7 +12,7 @@
 8) BOTTOM_CENTER_ROUNDER
 9) CENTER_ROUNDER
 
-*provide support to change selected text button by parameter selectedText
+*provide support to change selected text button by parameter ```selectedText```
 
 ## [1.0.2]   04-Jan-2021  :rocket:
 
