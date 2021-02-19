@@ -1,3 +1,19 @@
+
+## [1.1.0]   19-Feb-2021  :rocket:
+
+* Added below animates
+1) LEFT_TOP_ROUNDER
+2) LEFT_CENTER_ROUNDER
+3) LEFT_BOTTOM_ROUNDER
+4) RIGHT_BOTTOM_ROUNDER
+5) RIGHT_TOP_ROUNDER
+6) RIGHT_CENTER_ROUNDER
+7) TOP_CENTER_ROUNDER
+8) BOTTOM_CENTER_ROUNDER
+9) CENTER_ROUNDER
+
+*provide support to change selected text button by parameter selectedText
+
 ## [1.0.2]   04-Jan-2021  :rocket:
 
 * added ```isSelected``` parameter for select/deselect animated button
