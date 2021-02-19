@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/src/transition_type.dart';
+import 'dart:math';
 
 class RectClipper extends CustomClipper<Path> {
   final double clipFactor;
@@ -77,6 +78,88 @@ class RectClipper extends CustomClipper<Path> {
         path.lineTo(size.width, halfHeight + clipFactorHeight);
         path.lineTo(0.0, halfHeight + clipFactorHeight);
         break;
+      case TransitionType.LEFT_TOP_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, 0),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.LEFT_BOTTOM_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, size.height),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.LEFT_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(0, size.height / 2),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.RIGHT_BOTTOM_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, size.height),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.RIGHT_TOP_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, 0),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.RIGHT_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width, size.height / 2),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.TOP_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, 0),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.BOTTOM_CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, size.height),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+      case TransitionType.CENTER_ROUNDER:
+        path.addOval(Rect.fromCircle(
+            center: Offset(size.width / 2, size.height / 2),
+            radius:
+                (sqrt((size.width * size.width) + (size.height * size.height)) *
+                    clipFactor)));
+        break;
+    /*  case TransitionType.LEFT_TOP_CROSS:
+        path.lineTo(size.width * clipFactor, 0.0);
+        if(clipFactor<0.5){
+          path.lineTo(((size.width * clipFactor) - size.height), size.height);
+
+        }
+        path.lineTo(((size.width * clipFactor) - size.height), size.height);
+        path.lineTo(0.0, size.height);
+
+        break;
+      case TransitionType.LEFT_BOTTOM_CROSS:
+        // TODO: Handle this case.
+        break;
+      case TransitionType.RIGHT_TOP_CROSS:
+        // TODO: Handle this case.
+        break;
+      case TransitionType.RIGHT_BOTTOM_CROSS:
+        // TODO: Handle this case.
+        break;*/
     }
     path.close();
     return path;

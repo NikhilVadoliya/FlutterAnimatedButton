@@ -76,6 +76,16 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
+# Some **new** animation in latest version :zap:
+  * **Animations** : LEFT_TOP_ROUNDER, LEFT_BOTTOM_ROUNDER, BOTTOM_CENTER_ROUNDER, CENTER_ROUNDER...etc
+  * Selected button text support 
+  
+  </br>
+  
+<img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_1.gif?raw=true" height = "190px" width= "310px">. <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_2.gif?raw=true" height = "190px" width= "310px"> . <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/dev/assets/new_3.gif?raw=true" height = "190px" width= "310px">
+
+
+
 # Available **Animations** 	:dizzy:	
 
 ## AnimatedButton
@@ -162,20 +172,21 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 
 #### AnimatedButton
- - LEFT_TO_RIGHT
- - RIGHT_TO_LEFT
- - TOP_TO_BOTTOM
- - BOTTOM_TO_TOP
- - CENTER_LR_IN
- - CENTER_TB_IN
- - CENTER_LR_OUT
- - CENTER_TB_OUT
+|               |               |                      |                       |                |
+|---------------|---------------|----------------------|-----------------------|----------------|
+| LEFT_TO_RIGHT | CENTER_LR_IN  | LEFT_TOP_ROUNDER     | RIGHT_TOP_ROUNDER     | CENTER_ROUNDER |
+| RIGHT_TO_LEFT | CENTER_TB_IN  | LEFT_CENTER_ROUNDER  | RIGHT_CENTER_ROUNDER  | -              |
+| TOP_TO_BOTTOM | CENTER_LR_OUT | LEFT_BOTTOM_ROUNDER  | TOP_CENTER_ROUNDER    | -              |
+| BOTTOM_TO_TOP | CENTER_TB_OUT | RIGHT_BOTTOM_ROUNDER | BOTTOM_CENTER_ROUNDER | -              |
  
 #### AnimatedButton.strip
- - LEFT_TO_RIGHT
- - RIGHT_TO_LEFT
- - TOP_TO_BOTTOM
- - BOTTOM_TO_TOP
+|               |              
+|---------------|
+| LEFT_TO_RIGHT |
+| RIGHT_TO_LEFT | 
+| TOP_TO_BOTTOM | 
+| BOTTOM_TO_TOP |
+
  
  </br>
 </br>
