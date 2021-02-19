@@ -141,25 +141,24 @@ class RectClipper extends CustomClipper<Path> {
                 (sqrt((size.width * size.width) + (size.height * size.height)) *
                     clipFactor)));
         break;
-    /*  case TransitionType.LEFT_TOP_CROSS:
+      case TransitionType.LEFT_TOP_CROSS:
         path.lineTo(size.width * clipFactor, 0.0);
-        if(clipFactor<0.5){
-          path.lineTo(((size.width * clipFactor) - size.height), size.height);
-
-        }
         path.lineTo(((size.width * clipFactor) - size.height), size.height);
         path.lineTo(0.0, size.height);
 
         break;
       case TransitionType.LEFT_BOTTOM_CROSS:
-        // TODO: Handle this case.
+        path.moveTo(0, size.height);
+        path.lineTo(size.width * clipFactor, size.height);
+        path.lineTo(size.width * clipFactor*0.5, size.height - size.height * clipFactor);
+       // path.lineTo(0.0, size.height);
         break;
       case TransitionType.RIGHT_TOP_CROSS:
         // TODO: Handle this case.
         break;
       case TransitionType.RIGHT_BOTTOM_CROSS:
         // TODO: Handle this case.
-        break;*/
+        break;
     }
     path.close();
     return path;

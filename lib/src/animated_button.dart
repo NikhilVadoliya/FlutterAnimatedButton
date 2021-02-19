@@ -227,6 +227,9 @@ class _AnimatedButtonState extends State<AnimatedButton>
           widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
         slideBegin = 1.0;
         slideEnd = 0.0;
+      } else if (widget.transitionType == TransitionType.LEFT_TOP_CROSS) {
+        slideBegin = 0.0;
+        slideEnd = 1.0 + (widget.height / widget.width);
       } else {
         slideBegin = 0.0;
         slideEnd = 1.0;
