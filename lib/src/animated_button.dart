@@ -85,7 +85,7 @@ class AnimatedButton extends StatefulWidget {
   /// called this function when user press on button and pass value of button
   /// [true] - button selected
   /// [false] - button deSelected
-  final ValueChanged<bool> onChanges;
+  final ValueChanged<bool>? onChanges;
 
   /// [TransitionType]  type of animation which apply to Button
   /// by Default it is TransitionType.LEFT_TO_RIGHT
@@ -119,11 +119,11 @@ class AnimatedButton extends StatefulWidget {
 
   ///[gradient], which also fills the button
   /// * If [gradient] is null, this decoration does not paint gradients.
-  final Gradient gradient;
+  final Gradient? gradient;
 
   ///[selectedGradientColor], which also fills the  selected button
   /// * If [selectedGradientColor] is null, this decoration does not paint gradients.
-  final Gradient selectedGradientColor;
+  final Gradient? selectedGradientColor;
 
   ///[isSelected] if this is true then button is selected
   /// it's false then button is deselected;
@@ -131,17 +131,17 @@ class AnimatedButton extends StatefulWidget {
   final bool isSelected;
 
   const AnimatedButton({
-    Key key,
-    @required this.text,
-    @required this.onPress,
+    Key? key,
+    required this.text,
+    required this.onPress,
     this.transitionType = TransitionType.LEFT_TO_RIGHT,
     this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
     this.selectedTextColor = Colors.blue,
     this.selectedBackgroundColor = Colors.white,
     this.backgroundColor = Colors.white60,
     this.isReverse = false,
-    this.textMaxLine,
-    this.textOverflow,
+    this.textMaxLine = 1,
+    this.textOverflow = TextOverflow.clip,
     this.textAlignment = Alignment.center,
     this.height = 50,
     this.width = double.infinity,
@@ -155,17 +155,16 @@ class AnimatedButton extends StatefulWidget {
     this.selectedGradientColor,
     this.isSelected = false,
     this.selectedText = '',
-  })  : assert(text != null),
-        isStrip = false,
-        stripColor = null,
-        stripSize = null,
-        stripTransitionType = null,
+  })  : isStrip = false,
+        stripColor = Colors.transparent,
+        stripSize = 0,
+        stripTransitionType = StripTransitionType.LEFT_TO_RIGHT,
         super(key: key);
 
   AnimatedButton.strip({
-    Key key,
-    @required this.text,
-    @required this.onPress,
+    Key? key,
+    required this.text,
+    required this.onPress,
     this.isReverse = false,
     this.height = 50,
     this.width = double.infinity,
@@ -173,8 +172,8 @@ class AnimatedButton extends StatefulWidget {
     this.textStyle = const TextStyle(color: Colors.white, fontSize: 20),
     this.selectedTextColor = Colors.blue,
     this.selectedBackgroundColor = Colors.white,
-    this.textMaxLine,
-    this.textOverflow,
+    this.textMaxLine = 1,
+    this.textOverflow = TextOverflow.clip,
     this.textAlignment = Alignment.center,
     this.animationDuration = const Duration(milliseconds: 500),
     this.backgroundColor = Colors.white60,
@@ -186,11 +185,10 @@ class AnimatedButton extends StatefulWidget {
     this.selectedGradientColor,
     this.isSelected = false,
     this.selectedText = '',
-  })  : assert(text != null),
-        borderRadius = 0,
+  })  : borderRadius = 0,
         borderWidth = 0,
         borderColor = Colors.transparent,
-        transitionType = null,
+        transitionType = TransitionType.LEFT_TO_RIGHT,
         isStrip = true;
 
   @override
@@ -199,14 +197,14 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton>
     with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> slideAnimation;
-  Animation scaleAnimation;
-  double slideBegin;
-  double slideEnd;
+  AnimationController? _controller;
+  late Animation<double> slideAnimation;
+  Animation? scaleAnimation;
+  double? slideBegin;
+  double? slideEnd;
 
   /// [return] animationController of check status and animation
-  AnimationController get animationController => _controller;
+  AnimationController? get animationController => _controller;
 
   @override
   void initState() {
@@ -233,35 +231,35 @@ class _AnimatedButtonState extends State<AnimatedButton>
       }
     }
     final Animation curve =
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
-    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(curve);
+        CurvedAnimation(parent: _controller!, curve: Curves.easeInOutCubic);
+    slideAnimation = Tween(begin: slideBegin, end: slideEnd)
+        .animate(curve as Animation<double>);
 
-    widget.isSelected ? _controller.forward() : _controller.reverse();
+    widget.isSelected ? _controller!.forward() : _controller!.reverse();
   }
 
   @override
   void didUpdateWidget(covariant AnimatedButton oldWidget) {
     if (oldWidget.isSelected != widget.isSelected) {
-      widget.isSelected ? _controller.forward() : _controller.reverse();
+      widget.isSelected ? _controller!.forward() : _controller!.reverse();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
-    final DefaultTextStyle defaultTextStyle = DefaultTextStyle.of(context);
     // deSelected/normal text
     var textNormal = Text(
       widget.text,
-      maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
-      overflow: widget.textOverflow ?? defaultTextStyle.overflow,
+      maxLines: widget.textMaxLine,
+      overflow: widget.textOverflow,
       style: widget.textStyle,
     );
     // selected text
     var textSelected = Text(
       widget.selectedText.isNotEmpty ? widget.selectedText : widget.text,
-      maxLines: widget.textMaxLine ?? defaultTextStyle.maxLines,
-      overflow: widget.textOverflow ?? defaultTextStyle.overflow,
+      maxLines: widget.textMaxLine,
+      overflow: widget.textOverflow,
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
     );
 
@@ -271,7 +269,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            gradient: widget?.gradient,
+            gradient: widget.gradient,
             color: widget.backgroundColor,
             border: Border.all(
               color: widget.borderColor,
@@ -298,12 +296,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 ),
         ),
         AnimatedBuilder(
-          animation: _controller,
+          animation: _controller!,
           child: Container(
               width: widget.width,
               height: widget.height,
               decoration: BoxDecoration(
-                gradient: widget?.selectedGradientColor,
+                gradient: widget.selectedGradientColor,
                 color: widget.selectedBackgroundColor,
                 border: Border.all(
                   color: widget.borderColor,
@@ -344,14 +342,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   onButtonClick() {
     if (widget.enable) {
-      if (widget.isReverse && _controller.isCompleted) {
-        _controller.reverse();
-        widget.onChanges?.call(false);
+      if (widget.isReverse && _controller!.isCompleted) {
+        _controller!.reverse();
+        if (widget.onChanges != null) widget.onChanges!.call(false);
       } else {
-        _controller.forward();
-        widget?.onChanges?.call(true);
+        _controller!.forward();
+        if (widget.onChanges != null) widget.onChanges!.call(true);
       }
-      widget.onPress?.call();
+      widget.onPress.call();
     }
   }
 }
@@ -365,13 +363,13 @@ class StripAnimated extends StatelessWidget {
   final AlignmentGeometry textAlignment;
 
   const StripAnimated(
-      {Key key,
-      this.animationType,
-      this.stripColor,
-      this.stripSize,
-      this.text,
-      this.textAlignment,
-      this.onTap})
+      {Key? key,
+      required this.animationType,
+      required this.stripColor,
+      required this.stripSize,
+      required this.text,
+      required this.textAlignment,
+      required this.onTap})
       : super(key: key);
 
   @override
