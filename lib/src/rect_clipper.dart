@@ -141,7 +141,6 @@ class RectClipper extends CustomClipper<Path> {
                 (sqrt((size.width * size.width) + (size.height * size.height)) *
                     clipFactor)));
         break;
-  
     }
     path.close();
     return path;

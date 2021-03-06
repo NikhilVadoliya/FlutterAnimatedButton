@@ -1,4 +1,4 @@
-## [1.1.1]   06-Mar-2021  :rocket:
+## [2.0.0]   06-Mar-2021  :rocket:
 
 * Added Null safety
 
