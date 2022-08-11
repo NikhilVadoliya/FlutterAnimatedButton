@@ -1,3 +1,9 @@
+## [2.0.1]   11-Aug-2022  :rocket:
+
+* Added support on animation
+   - AnimatedOn.onTap
+   - AnimatedOn.onHove
+
 ## [2.0.0]   06-Mar-2021  :rocket:
 
 * Added Null safety
@@ -51,4 +57,3 @@
 * Initial Release.
 * Provide basic slide animation with customization of color, sizes and textStyle.
 * Provide AnimationController for get status of animation and handle animation 
-

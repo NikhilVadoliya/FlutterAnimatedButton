@@ -29,10 +29,6 @@ class AnimatedButton extends StatefulWidget {
   /// by Default is [false]
   final bool isReverse;
 
-  ///[bool]  [true] - user can interact with button and called onPress function
-  ///when user click on it. [false] - user can interact with button.
-  final bool enable;
-
   // An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
   /// to [overflow].
@@ -80,7 +76,7 @@ class AnimatedButton extends StatefulWidget {
   final double height;
 
   /// Adds the onTap [VoidCallback] to the animated button.
-  final VoidCallback onPress;
+  final VoidCallback? onPress;
 
   /// called this function when user press on button and pass value of button
   /// [true] - button selected
@@ -130,6 +126,10 @@ class AnimatedButton extends StatefulWidget {
   /// default it is false
   final bool isSelected;
 
+  ///[animatedOn] when animated
+  /// By Default value [AnimatedOn.onTap]
+  final AnimatedOn animatedOn;
+
   const AnimatedButton({
     Key? key,
     required this.text,
@@ -146,7 +146,6 @@ class AnimatedButton extends StatefulWidget {
     this.height = 50,
     this.width = double.infinity,
     this.animationDuration = const Duration(milliseconds: 500),
-    this.enable = true,
     this.onChanges,
     this.borderColor = Colors.transparent,
     this.borderRadius = 0,
@@ -155,6 +154,7 @@ class AnimatedButton extends StatefulWidget {
     this.selectedGradientColor,
     this.isSelected = false,
     this.selectedText = '',
+    this.animatedOn = AnimatedOn.onTap,
   })  : isStrip = false,
         stripColor = Colors.transparent,
         stripSize = 0,
@@ -179,12 +179,12 @@ class AnimatedButton extends StatefulWidget {
     this.backgroundColor = Colors.white60,
     this.stripColor = Colors.white,
     this.stripSize = 6,
-    this.enable = true,
     this.onChanges,
     this.gradient,
     this.selectedGradientColor,
     this.isSelected = false,
     this.selectedText = '',
+    this.animatedOn = AnimatedOn.onTap,
   })  : borderRadius = 0,
         borderWidth = 0,
         borderColor = Colors.transparent,
@@ -263,7 +263,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
       style: widget.textStyle.copyWith(color: widget.selectedTextColor),
     );
 
-    return Stack(
+    var body = Stack(
       children: [
         Container(
           width: widget.width,
@@ -278,21 +278,16 @@ class _AnimatedButtonState extends State<AnimatedButton>
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
           child: widget.isStrip
-              ? StripAnimated(
+              ? _StripAnimated(
                   animationType: widget.stripTransitionType,
                   stripColor: widget.stripColor,
                   stripSize: widget.stripSize,
                   text: textNormal,
-                  onTap: () => onButtonClick(),
                   textAlignment: widget.textAlignment,
                 )
-              : InkWell(
-                  borderRadius: BorderRadius.circular(widget.borderRadius),
-                  onTap: () => onButtonClick(),
-                  child: Align(
-                    child: textNormal,
-                    alignment: widget.textAlignment,
-                  ),
+              : Align(
+                  child: textNormal,
+                  alignment: widget.textAlignment,
                 ),
         ),
         AnimatedBuilder(
@@ -304,27 +299,20 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 gradient: widget.selectedGradientColor,
                 color: widget.selectedBackgroundColor,
                 border: Border.all(
-                  color: widget.borderColor,
-                  width: widget.borderWidth,
-                ),
+                    color: widget.borderColor, width: widget.borderWidth),
                 borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               child: widget.isStrip
-                  ? StripAnimated(
+                  ? _StripAnimated(
                       animationType: widget.stripTransitionType,
                       stripColor: widget.stripColor,
                       stripSize: widget.stripSize,
                       text: textSelected,
-                      onTap: () => onButtonClick(),
                       textAlignment: widget.textAlignment,
                     )
-                  : InkWell(
-                      borderRadius: BorderRadius.circular(widget.borderRadius),
-                      onTap: () => onButtonClick(),
-                      child: Align(
-                        child: textSelected,
-                        alignment: widget.textAlignment,
-                      ),
+                  : Align(
+                      child: textSelected,
+                      alignment: widget.textAlignment,
                     )),
           builder: (context, child) {
             return ClipPath(
@@ -338,10 +326,22 @@ class _AnimatedButtonState extends State<AnimatedButton>
         ),
       ],
     );
+    return widget.animatedOn == AnimatedOn.onHover
+        ? MouseRegion(
+            onEnter: (_) => onHover(true),
+            onExit: (_) => onHover(false),
+            child: InkWell(onTap: () => widget.onPress!.call(), child: body))
+        : InkWell(
+            onTap: () => onPressed(),
+            child: body,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          );
   }
 
-  onButtonClick() {
-    if (widget.enable) {
+  onPressed() {
+    if (widget.animatedOn == AnimatedOn.onTap) {
+      print('-----onTap');
+
       if (widget.isReverse && _controller!.isCompleted) {
         _controller!.reverse();
         if (widget.onChanges != null) widget.onChanges!.call(false);
@@ -349,27 +349,38 @@ class _AnimatedButtonState extends State<AnimatedButton>
         _controller!.forward();
         if (widget.onChanges != null) widget.onChanges!.call(true);
       }
-      widget.onPress.call();
+    }
+    widget.onPress?.call();
+  }
+
+  onHover(bool enter) {
+    if (enter) {
+      _controller!.forward();
+      widget.onChanges?.call(true);
+    } else {
+      _controller!.reverse();
+      widget.onChanges?.call(false);
     }
   }
 }
 
-class StripAnimated extends StatelessWidget {
+class _StripAnimated extends StatelessWidget {
   final StripTransitionType animationType;
   final Color stripColor;
   final double stripSize;
   final Text text;
-  final VoidCallback onTap;
+
+//  final VoidCallback onTap;
+  // final ValueChanged<bool>? onHover;
   final AlignmentGeometry textAlignment;
 
-  const StripAnimated(
+  const _StripAnimated(
       {Key? key,
       required this.animationType,
       required this.stripColor,
       required this.stripSize,
       required this.text,
-      required this.textAlignment,
-      required this.onTap})
+      required this.textAlignment})
       : super(key: key);
 
   @override
@@ -385,20 +396,17 @@ class StripAnimated extends StatelessWidget {
               color: stripColor,
             ),
           Expanded(
-            child: InkWell(
-              onTap: () => onTap(),
-              child: Padding(
-                padding: EdgeInsets.only(
-                    top: animationType == StripTransitionType.TOP_TO_BOTTOM
-                        ? 0
-                        : stripSize,
-                    bottom: animationType == StripTransitionType.BOTTOM_TO_TOP
-                        ? 0
-                        : stripSize),
-                child: Align(
-                  child: text,
-                  alignment: textAlignment,
-                ),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: animationType == StripTransitionType.TOP_TO_BOTTOM
+                      ? 0
+                      : stripSize,
+                  bottom: animationType == StripTransitionType.BOTTOM_TO_TOP
+                      ? 0
+                      : stripSize),
+              child: Align(
+                child: text,
+                alignment: textAlignment,
               ),
             ),
           ),
@@ -416,25 +424,11 @@ class StripAnimated extends StatelessWidget {
         children: [
           if (animationType == StripTransitionType.LEFT_TO_RIGHT)
             Container(
-              width: stripSize,
-              height: double.infinity,
-              color: stripColor,
-            ),
-          Expanded(
-            child: InkWell(
-              onTap: () => onTap(),
-              child: Align(
-                child: text,
-                alignment: textAlignment,
-              ),
-            ),
-          ),
+                width: stripSize, height: double.infinity, color: stripColor),
+          Expanded(child: Align(child: text, alignment: textAlignment)),
           if (animationType == StripTransitionType.RIGHT_TO_LEFT)
             Container(
-              width: stripSize,
-              height: double.infinity,
-              color: stripColor,
-            ),
+                width: stripSize, height: double.infinity, color: stripColor)
         ],
       );
     }

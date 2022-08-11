@@ -49,7 +49,9 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             AnimatedButton(
+              animatedOn: AnimatedOn.onHover,
               onPress: () {},
+              onChanges: (change) {},
               height: 70,
               width: 200,
               text: 'SUBMIT',
@@ -191,6 +193,19 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
               backgroundColor: Colors.black,
               borderColor: Colors.white,
               borderWidth: 1,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            AnimatedButton.strip(
+              animatedOn: AnimatedOn.onHover,
+              height: 70,
+              width: 200,
+              text: 'SUBMIT',
+              isReverse: true,
+              selectedTextColor: Colors.black,
+              textStyle: submitTextStyle,
+              backgroundColor: Colors.black,
             ),
           ],
         )),

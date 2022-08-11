@@ -70,7 +70,15 @@ You can override the `animationDuration` of animation of the button by setting i
 </br>
 </br>
 
-# Used in App 
+### Animation On
+  - AnimatedOn.onTap
+  - AnimatedOn.onHover
+
+
+</br>
+</br>
+
+# Used in App
 <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/demo_1.gif?raw=true" height = "500px" width= "250px"> <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/demo_2.gif?raw=true" height = "500px" width= "250px">  <img src="https://github.com/NikhilVadoliya/FlutterAnimatedButton/blob/main/assets/demo_3.gif?raw=true" height = "500px" width= "250px">
 
 </br>
