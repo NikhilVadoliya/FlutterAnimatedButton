@@ -338,10 +338,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
           );
   }
 
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
   onPressed() {
     if (widget.animatedOn == AnimatedOn.onTap) {
-      print('-----onTap');
-
       if (widget.isReverse && _controller!.isCompleted) {
         _controller!.reverse();
         if (widget.onChanges != null) widget.onChanges!.call(false);

@@ -1,3 +1,7 @@
+## [2.0.2]   24-Oct-2022  :rocket:
+
+* Fixed bug
+
 ## [2.0.1]   11-Aug-2022  :rocket:
 
 * Added support on animation

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/src/transition_type.dart';
 import 'dart:math';
