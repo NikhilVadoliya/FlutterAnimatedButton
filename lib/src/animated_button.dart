@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/src/rect_clipper.dart';
 import 'package:flutter_animated_button/src/transition_type.dart';
 
+import 'strip_animated.dart';
+
 class AnimatedButton extends StatefulWidget {
   /// [String] text of button
   ///
@@ -197,7 +199,7 @@ class AnimatedButton extends StatefulWidget {
 
 class _AnimatedButtonState extends State<AnimatedButton>
     with TickerProviderStateMixin {
-  AnimationController? _controller;
+  late AnimationController _controller;
   late Animation<double> slideAnimation;
   Animation? scaleAnimation;
   double? slideBegin;
@@ -230,25 +232,24 @@ class _AnimatedButtonState extends State<AnimatedButton>
         slideEnd = 1.0;
       }
     }
-    final Animation curve =
-        CurvedAnimation(parent: _controller!, curve: Curves.easeInOutCubic);
-    slideAnimation = Tween(begin: slideBegin, end: slideEnd)
-        .animate(curve as Animation<double>);
 
-    widget.isSelected ? _controller!.forward() : _controller!.reverse();
+    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic));
+
+    widget.isSelected ? _controller.forward() : _controller.reverse();
   }
 
   @override
   void didUpdateWidget(covariant AnimatedButton oldWidget) {
     if (oldWidget.isSelected != widget.isSelected) {
-      widget.isSelected ? _controller!.forward() : _controller!.reverse();
+      widget.isSelected ? _controller.forward() : _controller.reverse();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   Widget build(BuildContext context) {
-    // deSelected/normal text
+    // deselect/normal text
     var textNormal = Text(
       widget.text,
       maxLines: widget.textMaxLine,
@@ -278,7 +279,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
             borderRadius: BorderRadius.circular(widget.borderRadius),
           ),
           child: widget.isStrip
-              ? _StripAnimated(
+              ? StripAnimated(
                   animationType: widget.stripTransitionType,
                   stripColor: widget.stripColor,
                   stripSize: widget.stripSize,
@@ -291,7 +292,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 ),
         ),
         AnimatedBuilder(
-          animation: _controller!,
+          animation: _controller,
           child: Container(
               width: widget.width,
               height: widget.height,
@@ -303,7 +304,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                 borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               child: widget.isStrip
-                  ? _StripAnimated(
+                  ? StripAnimated(
                       animationType: widget.stripTransitionType,
                       stripColor: widget.stripColor,
                       stripSize: widget.stripSize,
@@ -330,7 +331,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
         ? MouseRegion(
             onEnter: (_) => onHover(true),
             onExit: (_) => onHover(false),
-            child: InkWell(onTap: () => widget.onPress!.call(), child: body))
+            child: InkWell(onTap: () => widget.onPress?.call(), child: body))
         : InkWell(
             onTap: () => onPressed(),
             child: body,
@@ -340,101 +341,25 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   @override
   void dispose() {
-    animationController?.dispose();
     super.dispose();
+    animationController?.dispose();
   }
 
   onPressed() {
     if (widget.animatedOn == AnimatedOn.onTap) {
-      if (widget.isReverse && _controller!.isCompleted) {
-        _controller!.reverse();
-        if (widget.onChanges != null) widget.onChanges!.call(false);
+      if (widget.isReverse && _controller.isCompleted) {
+        _controller.reverse();
+        widget.onChanges?.call(false);
       } else {
-        _controller!.forward();
-        if (widget.onChanges != null) widget.onChanges!.call(true);
+        _controller.forward();
+        widget.onChanges?.call(true);
       }
     }
     widget.onPress?.call();
   }
 
   onHover(bool enter) {
-    if (enter) {
-      _controller!.forward();
-      widget.onChanges?.call(true);
-    } else {
-      _controller!.reverse();
-      widget.onChanges?.call(false);
-    }
-  }
-}
-
-class _StripAnimated extends StatelessWidget {
-  final StripTransitionType animationType;
-  final Color stripColor;
-  final double stripSize;
-  final Text text;
-
-//  final VoidCallback onTap;
-  // final ValueChanged<bool>? onHover;
-  final AlignmentGeometry textAlignment;
-
-  const _StripAnimated(
-      {Key? key,
-      required this.animationType,
-      required this.stripColor,
-      required this.stripSize,
-      required this.text,
-      required this.textAlignment})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    if (animationType == StripTransitionType.BOTTOM_TO_TOP ||
-        animationType == StripTransitionType.TOP_TO_BOTTOM) {
-      return Column(
-        children: [
-          if (animationType == StripTransitionType.TOP_TO_BOTTOM)
-            Container(
-              width: double.infinity,
-              height: stripSize,
-              color: stripColor,
-            ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(
-                  top: animationType == StripTransitionType.TOP_TO_BOTTOM
-                      ? 0
-                      : stripSize,
-                  bottom: animationType == StripTransitionType.BOTTOM_TO_TOP
-                      ? 0
-                      : stripSize),
-              child: Align(
-                child: text,
-                alignment: textAlignment,
-              ),
-            ),
-          ),
-          if (animationType == StripTransitionType.BOTTOM_TO_TOP)
-            Container(
-              width: double.infinity,
-              height: stripSize,
-              color: stripColor,
-            ),
-        ],
-      );
-    } else {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          if (animationType == StripTransitionType.LEFT_TO_RIGHT)
-            Container(
-                width: stripSize, height: double.infinity, color: stripColor),
-          Expanded(child: Align(child: text, alignment: textAlignment)),
-          if (animationType == StripTransitionType.RIGHT_TO_LEFT)
-            Container(
-                width: stripSize, height: double.infinity, color: stripColor)
-        ],
-      );
-    }
+    enter ? _controller.forward() : _controller.reverse();
+    widget.onChanges?.call(enter);
   }
 }
