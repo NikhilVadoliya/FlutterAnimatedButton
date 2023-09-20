@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,11 +35,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
 
   @override
   Widget build(BuildContext context) {
-    var submitTextStyle = GoogleFonts.nunito(
-        fontSize: 28,
-        letterSpacing: 5,
-        color: Colors.white,
-        fontWeight: FontWeight.w300);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -52,12 +46,12 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 onPress: () {},
                 onChanges: (change) {},
                 height: 70,
+                reverseAnimation: Duration(milliseconds: 500),
                 width: 200,
                 text: 'SUBMIT',
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.LEFT_TOP_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 selectedBackgroundColor: Colors.lightGreen,
                 borderColor: Colors.white,
@@ -71,13 +65,12 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 height: 70,
                 width: 200,
                 text: 'SUBMIT',
+                reverseAnimation: Duration(milliseconds: 500),
                 gradient: LinearGradient(colors: [Colors.red, Colors.orange]),
-                selectedGradientColor: LinearGradient(
-                    colors: [Colors.pinkAccent, Colors.purpleAccent]),
+                selectedGradientColor: LinearGradient(colors: [Colors.pinkAccent, Colors.purpleAccent]),
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.LEFT_CENTER_ROUNDER,
-                textStyle: submitTextStyle,
                 borderColor: Colors.white,
                 borderWidth: 1,
               ),
@@ -91,8 +84,8 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 text: 'SUBMIT',
                 isReverse: true,
                 selectedTextColor: Colors.black,
+                reverseAnimation: Duration(milliseconds: 500),
                 transitionType: TransitionType.LEFT_BOTTOM_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -104,11 +97,11 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 onPress: () {},
                 height: 70,
                 width: 200,
-                text: 'SUBMIT',
+                text: 'SUBMItT',
+                reverseAnimation: Duration(milliseconds: 5000),
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.RIGHT_TOP_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -124,7 +117,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.RIGHT_CENTER_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -140,7 +132,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.RIGHT_BOTTOM_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -156,7 +147,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.TOP_CENTER_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -172,7 +162,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.BOTTOM_CENTER_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -188,7 +177,6 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.CENTER_ROUNDER,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
                 borderColor: Colors.white,
                 borderWidth: 1,
@@ -203,8 +191,8 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 text: 'SUBMIT',
                 isReverse: true,
                 selectedTextColor: Colors.black,
-                textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
+                onPress: () {},
               ),
             ],
           ),

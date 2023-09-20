@@ -31,6 +31,10 @@ class AnimatedButton extends StatefulWidget {
   /// by Default is [false]
   final bool isReverse;
 
+  /// You can enter Duration for the animation to be retriggered after a certain time
+  /// after the button is pressed
+  ///
+  final Duration? reverseAnimation;
   // An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
   /// to [overflow].
@@ -142,6 +146,7 @@ class AnimatedButton extends StatefulWidget {
     this.selectedBackgroundColor = Colors.white,
     this.backgroundColor = Colors.white60,
     this.isReverse = false,
+    this.reverseAnimation,
     this.textMaxLine = 1,
     this.textOverflow = TextOverflow.clip,
     this.textAlignment = Alignment.center,
@@ -168,6 +173,7 @@ class AnimatedButton extends StatefulWidget {
     required this.text,
     required this.onPress,
     this.isReverse = false,
+    this.reverseAnimation,
     this.height = 50,
     this.width = double.infinity,
     this.stripTransitionType = StripTransitionType.LEFT_TO_RIGHT,
@@ -197,8 +203,7 @@ class AnimatedButton extends StatefulWidget {
   _AnimatedButtonState createState() => _AnimatedButtonState();
 }
 
-class _AnimatedButtonState extends State<AnimatedButton>
-    with TickerProviderStateMixin {
+class _AnimatedButtonState extends State<AnimatedButton> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> slideAnimation;
   Animation? scaleAnimation;
@@ -211,8 +216,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(duration: widget.animationDuration, vsync: this);
+    _controller = AnimationController(duration: widget.animationDuration, vsync: this);
     if (widget.isStrip) {
       if (widget.stripTransitionType == StripTransitionType.RIGHT_TO_LEFT ||
           widget.stripTransitionType == StripTransitionType.BOTTOM_TO_TOP) {
@@ -233,8 +237,8 @@ class _AnimatedButtonState extends State<AnimatedButton>
       }
     }
 
-    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic));
+    slideAnimation = Tween(begin: slideBegin, end: slideEnd)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic));
 
     widget.isSelected ? _controller.forward() : _controller.reverse();
   }
@@ -299,8 +303,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
               decoration: BoxDecoration(
                 gradient: widget.selectedGradientColor,
                 color: widget.selectedBackgroundColor,
-                border: Border.all(
-                    color: widget.borderColor, width: widget.borderWidth),
+                border: Border.all(color: widget.borderColor, width: widget.borderWidth),
                 borderRadius: BorderRadius.circular(widget.borderRadius),
               ),
               child: widget.isStrip
@@ -318,8 +321,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
           builder: (context, child) {
             return ClipPath(
               clipper: widget.isStrip
-                  ? RectStripClipper(
-                      slideAnimation.value, widget.stripTransitionType)
+                  ? RectStripClipper(slideAnimation.value, widget.stripTransitionType)
                   : RectClipper(slideAnimation.value, widget.transitionType),
               child: child,
             );
@@ -345,7 +347,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     animationController?.dispose();
   }
 
-  onPressed() {
+  onPressed() async {
     if (widget.animatedOn == AnimatedOn.onTap) {
       if (widget.isReverse && _controller.isCompleted) {
         _controller.reverse();
@@ -356,6 +358,16 @@ class _AnimatedButtonState extends State<AnimatedButton>
       }
     }
     widget.onPress?.call();
+    if (widget.reverseAnimation != null) {
+      await Future.delayed(widget.reverseAnimation!);
+      if (widget.isReverse && _controller.isCompleted) {
+        _controller.reverse();
+        widget.onChanges?.call(false);
+      } else {
+        _controller.forward();
+        widget.onChanges?.call(true);
+      }
+    }
   }
 
   onHover(bool enter) {
