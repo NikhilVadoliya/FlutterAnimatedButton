@@ -36,11 +36,8 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
 
   @override
   Widget build(BuildContext context) {
-    var submitTextStyle = GoogleFonts.nunito(
-        fontSize: 28,
-        letterSpacing: 5,
-        color: Colors.white,
-        fontWeight: FontWeight.w300);
+    var submitTextStyle =
+        GoogleFonts.nunito(fontSize: 28, letterSpacing: 5, color: Colors.white, fontWeight: FontWeight.w300);
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
@@ -72,8 +69,7 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 width: 200,
                 text: 'SUBMIT',
                 gradient: LinearGradient(colors: [Colors.red, Colors.orange]),
-                selectedGradientColor: LinearGradient(
-                    colors: [Colors.pinkAccent, Colors.purpleAccent]),
+                selectedGradientColor: LinearGradient(colors: [Colors.pinkAccent, Colors.purpleAccent]),
                 isReverse: true,
                 selectedTextColor: Colors.black,
                 transitionType: TransitionType.LEFT_CENTER_ROUNDER,
@@ -205,6 +201,7 @@ class _AnimatedButtonDemoState extends State<AnimatedButtonDemo> {
                 selectedTextColor: Colors.black,
                 textStyle: submitTextStyle,
                 backgroundColor: Colors.black,
+                onPress: () {},
               ),
             ],
           ),
