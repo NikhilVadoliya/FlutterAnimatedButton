@@ -206,35 +206,20 @@ class _AnimatedButtonState extends State<AnimatedButton>
   double? slideEnd;
 
   /// [return] animationController of check status and animation
-  AnimationController? get animationController => _controller;
+  AnimationController get animationController => _controller;
 
   @override
   void initState() {
     super.initState();
     _controller =
         AnimationController(duration: widget.animationDuration, vsync: this);
-    if (widget.isStrip) {
-      if (widget.stripTransitionType == StripTransitionType.RIGHT_TO_LEFT ||
-          widget.stripTransitionType == StripTransitionType.BOTTOM_TO_TOP) {
-        slideBegin = 1.0;
-        slideEnd = 0.0;
-      } else {
-        slideBegin = 0.0;
-        slideEnd = 1.0;
-      }
-    } else {
-      if (widget.transitionType == TransitionType.RIGHT_TO_LEFT ||
-          widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
-        slideBegin = 1.0;
-        slideEnd = 0.0;
-      } else {
-        slideBegin = 0.0;
-        slideEnd = 1.0;
-      }
-    }
+    _determineSlideValues();
 
-    slideAnimation = Tween(begin: slideBegin, end: slideEnd).animate(
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic));
+    slideAnimation =
+        Tween(begin: slideBegin, end: slideEnd).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOutCubic,
+    ));
 
     widget.isSelected ? _controller.forward() : _controller.reverse();
   }
@@ -250,14 +235,14 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     // deselect/normal text
-    var textNormal = Text(
+    final textNormal = Text(
       widget.text,
       maxLines: widget.textMaxLine,
       overflow: widget.textOverflow,
       style: widget.textStyle,
     );
     // selected text
-    var textSelected = Text(
+    final textSelected = Text(
       widget.selectedText.isNotEmpty ? widget.selectedText : widget.text,
       maxLines: widget.textMaxLine,
       overflow: widget.textOverflow,
@@ -341,8 +326,30 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   @override
   void dispose() {
+    animationController.dispose();
     super.dispose();
-    animationController?.dispose();
+  }
+
+  void _determineSlideValues() {
+    if (widget.isStrip) {
+      if (widget.stripTransitionType == StripTransitionType.RIGHT_TO_LEFT ||
+          widget.stripTransitionType == StripTransitionType.BOTTOM_TO_TOP) {
+        slideBegin = 1.0;
+        slideEnd = 0.0;
+      } else {
+        slideBegin = 0.0;
+        slideEnd = 1.0;
+      }
+    } else {
+      if (widget.transitionType == TransitionType.RIGHT_TO_LEFT ||
+          widget.transitionType == TransitionType.BOTTOM_TO_TOP) {
+        slideBegin = 1.0;
+        slideEnd = 0.0;
+      } else {
+        slideBegin = 0.0;
+        slideEnd = 1.0;
+      }
+    }
   }
 
   onPressed() {

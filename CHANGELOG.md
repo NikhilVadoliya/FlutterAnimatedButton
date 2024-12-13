@@ -1,3 +1,12 @@
+## [2.0.4]   13-Dec-2024  :rocket:
+* Upgrade dart version min ```3.0.0```.
+* Fixed bug
+
+
+## [2.0.3]   03-Feb-2023  :rocket:
+* Improvement
+
+* Fixed bug
 ## [2.0.2]   24-Oct-2022  :rocket:
 
 * Fixed bug
